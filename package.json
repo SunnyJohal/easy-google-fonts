@@ -1,0 +1,24 @@
+{
+  "name": "easy-google-fonts",
+  "version": "2.0.0",
+  "description": "Adds google fonts to any WordPress theme without coding and integrates with the customizer for a realtime live preview.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SunnyJohal/easy-google-fonts.git"
+  },
+  "keywords": [
+    "google fonts",
+    "WordPress google fonts",
+    "custom fonts"
+  ],
+  "author": "Titanium Themes <support@titaniumthemes.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SunnyJohal/easy-google-fonts/issues"
+  },
+  "homepage": "https://github.com/SunnyJohal/easy-google-fonts#readme"
+}
