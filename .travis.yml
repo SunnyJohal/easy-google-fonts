@@ -1,0 +1,67 @@
+language: php
+
+php:
+  - 7.4.7
+
+services:
+  - docker
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+cache:
+  yarn: true
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.jest-cache
+    - $HOME/.npm
+    - $HOME/.nvm/.cache
+    - $HOME/.cache/yarn
+    - $HOME/.yarn-cache
+
+branches:
+  only:
+    - main
+
+env:
+  global:
+    - WP_DEVELOP_DIR=./wordpress
+    - LOCAL_SCRIPT_DEBUG=false
+    - INSTALL_WORDPRESS=true
+
+# Make sure NodeGit gets the correct C libs.
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libstdc++-4.9-dev
+
+before_install:
+  - nvm install --latest-npm
+  - |
+    if [[ "$INSTALL_WORDPRESS" = "true" ]]; then
+      # Upgrade docker-compose
+      sudo rm /usr/local/bin/docker-compose
+      curl -sL https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+      chmod +x docker-compose
+      sudo mv docker-compose /usr/local/bin
+    fi
+  # - yarn install
+
+install:
+  # Build Easy Google Fonts.
+  - npm run setup
+
+jobs:
+  include:
+    - name: JavaScript Unit Tests
+      env: INSTALL_WORDPRESS=false
+      script:
+        - yarn test-unit-js -- --ci --maxWorkers=2 --cacheDirectory="$HOME/.jest-cache"
+
+    - name: PHP Unit Tests
+      script:
+        - yarn test-unit-php && yarn test-unit-php-multisite

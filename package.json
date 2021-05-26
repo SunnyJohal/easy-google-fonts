@@ -4,7 +4,19 @@
   "description": "Adds google fonts to any WordPress theme without coding and integrates with the customizer for a realtime live preview.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run setup && npm run start",
+    "start": "wp-scripts start --output-path=src/dist",
+    "prestart": "rm -rf src/dist",
+    "build": "wp-scripts build --output-path=src/dist",
+    "prebuild": "rm -rf src/dist",
+    "test": "wp-scripts test-unit-js --watch",
+    "test-unit-js": "wp-scripts test-unit-js",
+    "test-unit-php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/easy-google-fonts/phpunit.xml.dist --verbose --colors=always'",
+    "test-unit-php-multisite": "wp-env run phpunit 'WP_MULTISITE=1 phpunit -c /var/www/html/wp-content/plugins/easy-google-fonts/phpunit.xml.dist --verbose'",
+    "presetup": "npm install && composer install",
+    "setup": "wp-env start",
+    "destroy": "wp-env destroy",
+    "wp-env": "wp-env"
   },
   "repository": {
     "type": "git",
@@ -13,12 +25,25 @@
   "keywords": [
     "google fonts",
     "WordPress google fonts",
-    "custom fonts"
+    "custom fonts",
+    "replace theme fonts",
+    "change theme fonts"
   ],
   "author": "Titanium Themes <support@titaniumthemes.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SunnyJohal/easy-google-fonts/issues"
   },
-  "homepage": "https://github.com/SunnyJohal/easy-google-fonts#readme"
+  "homepage": "https://github.com/SunnyJohal/easy-google-fonts#readme",
+  "dependencies": {
+    "bootstrap": "^5.0.1",
+    "react-beforeunload": "^2.5.1",
+    "react-router-dom": "^5.2.0",
+    "react-toast-notifications": "^2.4.4",
+    "use-debounce": "^6.0.1"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^4.0.4",
+    "@wordpress/scripts": "^16.1.0"
+  }
 }

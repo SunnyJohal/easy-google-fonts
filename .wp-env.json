@@ -1,0 +1,18 @@
+{
+  "port": 4000,
+  "testsPort": 4001,
+  "core": null,
+  "plugins": [".", "https://downloads.wordpress.org/plugin/query-monitor.3.6.4.zip"],
+  "env": {
+    "tests": {
+      "themes": ["https://downloads.wordpress.org/theme/twentytwentyone.1.3.zip"]
+    }
+  },
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "WP_TESTS_EMAIL": "admin@example.org",
+    "WP_TESTS_TITLE": "Easy Google Fonts",
+    "WP_PHP_BINARY": "php"
+  }
+}
