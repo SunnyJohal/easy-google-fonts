@@ -67,6 +67,7 @@ class EGF_Test_Plugin_Includes extends WP_UnitTestCase {
 			[ 'deprecated', 'Should load /src/includes/deprecated.php' ],
 			[ 'frontend', 'Should load /src/includes/frontend.php' ],
 			[ 'setup', 'Should load /src/includes/setup.php' ],
+			[ 'utils', 'Should load /src/includes/utils.php' ],
 		];
 	}
 

@@ -2,13 +2,13 @@
 /**
  * Test Plugin Data
  *
- * @package Easy_Custom_Sidebars
+ * @package easy-google-fonts
  */
 
 /**
- * Class ECS_Test_Plugin_Includes
+ * Class EGF_Test_Plugin_Includes
  */
-class ECS_Test_Plugin_Metadata extends WP_UnitTestCase {
+class EGF_Test_Plugin_Metadata extends WP_UnitTestCase {
 	/**
 	 * Runs before each test.
 	 */
