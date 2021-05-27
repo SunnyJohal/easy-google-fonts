@@ -12,7 +12,7 @@ notifications:
     on_failure: change
 
 cache:
-  yarn: true
+  npm: true
   directories:
     - $HOME/.composer/cache
     - $HOME/.jest-cache
@@ -60,8 +60,8 @@ jobs:
     - name: JavaScript Unit Tests
       env: INSTALL_WORDPRESS=false
       script:
-        - yarn test-unit-js -- --ci --maxWorkers=2 --cacheDirectory="$HOME/.jest-cache"
+        - npm run test-unit-js -- --ci --maxWorkers=2 --cacheDirectory="$HOME/.jest-cache"
 
     - name: PHP Unit Tests
       script:
-        - yarn test-unit-php && yarn test-unit-php-multisite
+        - npm run test-unit-php && npm run test-unit-php-multisite
