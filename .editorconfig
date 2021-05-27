@@ -1,0 +1,7 @@
+# top-most EditorConfig file
+root = true
+
+[*.php]
+indent_style = tab
+indent_size = 2
+insert_final_newline = true
