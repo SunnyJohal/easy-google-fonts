@@ -1,4 +1,4 @@
-<!-- [![Build Status](https://travis-ci.org/SunnyJohal/easy-google-fonts.svg?branch=master)](https://travis-ci.org/SunnyJohal/easy-google-fonts) -->
+<!-- [![Build Status](https://travis-ci.com/SunnyJohal/easy-google-fonts.svg?branch=main)](https://travis-ci.com/SunnyJohal/easy-google-fonts) -->
 
 # Easy Google Fonts
 
