@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 8.0.0
+  - 7.4.7
 
 services:
   - docker
@@ -62,6 +62,12 @@ jobs:
       script:
         - npm run test-unit-js -- --ci --maxWorkers=2 --cacheDirectory="$HOME/.jest-cache"
 
-    - name: PHP Unit Tests
+    - name: PHP 7 Unit Tests
+      php: 7.4.7
+      script:
+        - npm run test-unit-php && npm run test-unit-php-multisite
+
+    - name: PHP 8 Unit Tests
+      php: 8.0.0
       script:
         - npm run test-unit-php && npm run test-unit-php-multisite
