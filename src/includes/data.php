@@ -75,7 +75,14 @@ function register_metadata_for_font_controls() {
 			'type'           => 'array',
 			'description'    => __( "All of the CSS selectors that this font control's styles should be applied to.", 'easy-google-fonts' ),
 			'single'         => true,
-			'show_in_rest'   => true,
+			'show_in_rest'   => [
+				'schema' => [
+					'type'  => 'array',
+					'items' => [
+						'type' => 'string',
+					],
+				],
+			],
 		]
 	);
 
