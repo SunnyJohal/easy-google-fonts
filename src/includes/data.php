@@ -119,7 +119,7 @@ function get_font_control_id( $post_id ) {
  * Get Font Control Description
  *
  * Gets the description text that will be
- * displayed in the Widgets interface.
+ * displayed in the customizer interface.
  *
  * @param int $post_id ID of a 'tt_font_control' post.
  */
@@ -146,4 +146,29 @@ function get_font_control_selectors( $post_id ) {
 		$selectors,
 		$post_id
 	);
+}
+
+/**
+ * Delete All Font Controls
+ *
+ * @return boolean true after all font controls have been deleted.
+ */
+function delete_all_font_controls() {
+	$all_font_controls = new \WP_Query(
+		[
+			'post_type'      => 'tt_font_control',
+			'posts_per_page' => -1,
+			'fields'         => 'ids',
+		]
+	);
+
+	foreach ( $all_font_controls->posts as $font_control_id ) {
+		wp_delete_post( $font_control_id, true );
+	}
+
+	if ( ! empty( $all_font_controls->posts ) ) {
+		wp_reset_postdata();
+	}
+
+	return true;
 }

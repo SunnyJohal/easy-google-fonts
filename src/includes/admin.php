@@ -84,7 +84,8 @@ function enqueue_admin_scripts() {
 		wp_enqueue_style( 'wp-pointer' );
 		wp_enqueue_script( 'wp-pointer' );
 
-		$pointer_asset = include plugin_dir_path( __FILE__ ) . '../dist/admin.asset.php';
+		$pointer_asset = include plugin_dir_path( __FILE__ ) . '../dist/pointer.asset.php';
+
 		wp_enqueue_script(
 			'easy-google-fonts/pointer',
 			Setup\get_plugin_src_url() . 'dist/pointer.js',
@@ -125,10 +126,9 @@ function enqueue_admin_scripts() {
 			true
 		);
 
-		// TODO: reference tt_font_control in count posts.
 		wp_add_inline_script(
 			'easy-google-fonts/admin',
-			'easy_google_fonts = { admin_url: "' . admin_url() . '", num_font_controls: ' . wp_count_posts( 'post' )->publish . ', image_url: "' . plugins_url( 'easy-google-fonts' ) . '" }',
+			'easy_google_fonts = { admin_url: "' . admin_url() . '", num_font_controls: ' . wp_count_posts( 'tt_font_control' )->publish . ', image_url: "' . plugins_url( 'easy-google-fonts' ) . '" }',
 			'before'
 		);
 
@@ -167,7 +167,7 @@ function get_plugin_settings_screen_id() {
  * Add Admin Page Help Tabs
  *
  * Adds contextual help tabs to the admin
- * themes sidebar page.
+ * font control plugin settings page.
  *
  * @since 2.0.0
  */
@@ -192,7 +192,7 @@ function add_help_tabs() {
 
 	$screen->set_help_sidebar(
 		'<p><strong>' . __( 'For more information:', 'easy-google-fonts' ) . '</strong></p>' .
-		'<p><a href="' . admin_url( 'options-general.php?page=easy-google-fonts&screen=about' ) . '">' . __( 'About Easy Custom Sidebars', 'easy-google-fonts' ) . '</a></p>' .
+		'<p><a href="' . admin_url( 'options-general.php?page=easy-google-fonts&screen=about' ) . '">' . __( 'About Easy Google Fonts', 'easy-google-fonts' ) . '</a></p>' .
 		'<p><a href="https://titaniumthemes.com/" target="_blank">' . __( 'About Titanium Themes', 'easy-google-fonts' ) . '</a></p>' .
 		'<p><a href="https://wordpress.org/support/plugin/easy-google-fonts/" target="_blank">' . __( 'Support Forums', 'easy-google-fonts' ) . '</a></p>'
 	);

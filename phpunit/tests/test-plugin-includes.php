@@ -2,7 +2,7 @@
 /**
  * Test Plugin Data
  *
- * @package Easy_Custom_Sidebars
+ * @package easy-google-fonts
  */
 
 /**

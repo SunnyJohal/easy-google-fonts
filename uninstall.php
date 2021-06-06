@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstall Easy Custom Sidebars
+ * Uninstall Easy Google Fonts
  *
  * This file is intentionally blank as the plugin
  * admin screen manages any option/transient/data
