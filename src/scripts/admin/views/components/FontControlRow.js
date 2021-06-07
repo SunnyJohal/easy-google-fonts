@@ -72,28 +72,32 @@ const FontControlRow = props => {
 
         {/* Font control force styles */}
         <div className="col">
-          <CheckboxControl
-            className="egf-settings__force-style egf-font-control-property"
-            checked={forceStyles}
-            label={__('Force Styles', 'easy-google-fonts')}
-            onChange={async forceStyles => {
-              setIsSaving(true);
-              await updateFontControlForceStyles({ id: fontControlId, forceStyles });
-              setIsSaving(false);
-              addToast(sprintf(__('%s has been updated.', 'easy-google-fonts'), fontControlTitle), {
-                appearance: 'success',
-                autoDismiss: true,
-                placement: 'bottom-right'
-              });
-            }}
-          />
-        </div>
+          <div className="row">
+            <div className="col">
+              <CheckboxControl
+                className="egf-settings__force-style egf-font-control-property"
+                checked={forceStyles}
+                label={__('Force Styles', 'easy-google-fonts')}
+                onChange={async forceStyles => {
+                  setIsSaving(true);
+                  await updateFontControlForceStyles({ id: fontControlId, forceStyles });
+                  setIsSaving(false);
+                  addToast(sprintf(__('%s has been updated.', 'easy-google-fonts'), fontControlTitle), {
+                    appearance: 'success',
+                    autoDismiss: true,
+                    placement: 'bottom-right'
+                  });
+                }}
+              />
+            </div>
 
-        {isSaving && (
-          <div className="col-auto pl-0">
-            <Spinner />
+            {isSaving && (
+              <div className="col-auto pl-0">
+                <Spinner />
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
       {appendDivider ? <CardDivider className="my-3" /> : null}
     </div>

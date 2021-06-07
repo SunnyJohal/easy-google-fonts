@@ -3,7 +3,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { apiFetch } from '@wordpress/data-controls';
 import { addQueryArgs } from '@wordpress/url';
 
-import { hydrateFontControls } from './actions';
+import { hydrateFontControls, hydrateApiKey } from './actions';
 
 /**
  * Font Control Retrieval Resolvers
@@ -25,6 +25,17 @@ export function* getFontControls() {
     }
 
     return hydrateFontControls(allFontControls);
+  }
+
+  return;
+}
+
+export function* getApiKey() {
+  const path = addQueryArgs('/easy-google-fonts/v1/api_key', {});
+  const apiKey = yield apiFetch({ path });
+
+  if (apiKey) {
+    return hydrateApiKey(apiKey);
   }
 
   return;

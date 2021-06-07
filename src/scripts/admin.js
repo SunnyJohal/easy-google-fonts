@@ -16,6 +16,7 @@ import ScreenController from './admin/views/pages/ScreenController';
 const AdminScreen = () => {
   // Preload state.
   useSelect(select => select(STORE_KEY).getFontControls());
+  useSelect(select => select(STORE_KEY).getApiKey());
 
   return (
     <Router basename={getPath(easy_google_fonts.admin_url)}>

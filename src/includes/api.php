@@ -36,6 +36,39 @@ add_action(
 );
 
 /**
+ * Option API Endpoints
+ */
+add_action(
+	'rest_api_init',
+	function() {
+		register_rest_route(
+			'easy-google-fonts/v1',
+			'api_key',
+			[
+				[
+					'methods'             => 'GET',
+					'callback'            => function () {
+						return get_option( 'tt-font-google-api-key', '' );
+					},
+					'permission_callback' => function() {
+						return current_user_can( 'edit_theme_options' );
+					},
+				],
+				[
+					'methods'             => 'POST',
+					'callback'            => function ( $request ) {
+						return update_option( 'tt-font-google-api-key', $request->get_param( 'api_key' ) );
+					},
+					'permission_callback' => function() {
+						return current_user_can( 'edit_theme_options' );
+					},
+				],
+			]
+		);
+	}
+);
+
+/**
  * POST: Dismiss Admin WP Pointer
  */
 add_action(

@@ -12,7 +12,7 @@ import apiFetch from '@wordpress/api-fetch';
 $(function () {
   const content = `
      <h3>${__('Easy Google Fonts', 'easy-google-fonts')}</h3>
-     <p>${__('Create and manage your font controls in the Settings menu.', 'easy-google-fonts')}</p>
+     <p>${__('Create and manage your customizer font controls in the Settings menu.', 'easy-google-fonts')}</p>
    `;
 
   $('#menu-settings')

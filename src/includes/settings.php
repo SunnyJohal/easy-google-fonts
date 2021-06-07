@@ -34,5 +34,7 @@ function validate_settings( $input ) {
 }
 
 function get_settings() {}
+
 function get_setting_defaults() {}
+
 function add_settings_section() {}

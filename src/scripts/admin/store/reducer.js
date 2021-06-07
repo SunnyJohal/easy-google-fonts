@@ -38,6 +38,27 @@ export const fontControlsReducer = (state = {}, action) => {
   }
 };
 
+/**
+ * API Key Reducers
+ * @param {*} state
+ * @param {*} action
+ */
+export const apiKeyReducer = (state = '', action) => {
+  switch (action.type) {
+    case 'UPDATE_API_KEY':
+      return action.payload.apiKey;
+      break;
+
+    case 'HYDRATE_API_KEY':
+      return action.payload.apiKey;
+      break;
+
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
-  fontControls: fontControlsReducer
+  fontControls: fontControlsReducer,
+  apiKey: apiKeyReducer
 });

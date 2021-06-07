@@ -127,3 +127,32 @@ export function* deleteAllFontControls() {
     payload: { completed }
   };
 }
+
+/**
+ * API Key Actions
+ */
+export const hydrateApiKey = apiKey => {
+  return {
+    type: 'HYDRATE_API_KEY',
+    payload: { apiKey }
+  };
+};
+
+export function* updateApiKey(apiKey) {
+  const path = '/easy-google-fonts/v1/api_key';
+
+  yield apiFetch({
+    path,
+    method: 'POST',
+    data: {
+      api_key: apiKey
+    }
+  });
+
+  return {
+    type: 'UPDATE_API_KEY',
+    payload: {
+      apiKey
+    }
+  };
+}
