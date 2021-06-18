@@ -11,7 +11,7 @@
 use EGF\Data as Data;
 
 /**
- * Class ECS_Test_Data
+ * Class EGF_Test_Data
  */
 class EGF_Test_Data extends WP_UnitTestCase {
 	/**
@@ -99,6 +99,13 @@ class EGF_Test_Data extends WP_UnitTestCase {
 			Data\get_font_control_description( 0 ),
 			false
 		);
+	}
+
+	/**
+	 * Test Get Font Control Force Styles
+	 */
+	public function test_get_font_control_force_styles() {
+		$this->assertIsBool( Data\get_font_control_force_styles( self::$post_id ) );
 	}
 
 	/**

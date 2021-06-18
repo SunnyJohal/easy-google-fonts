@@ -1,0 +1,23 @@
+/* External Dependancies */
+@import '../../node_modules/bootstrap/dist/css/bootstrap-grid.css';
+
+/* Notice */
+.customize-control-font .components-panel__body .notice {
+  display: none;
+}
+
+/* Font Tab Styles */
+.egf-font-settings__settings .components-base-control__field {
+  margin-bottom: 0;
+}
+
+.egf-font-settings__settings label {
+  display: block;
+  margin-bottom: 2px !important;
+}
+
+.egf-font-settings__settings {
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+/* Font Settings Tab */

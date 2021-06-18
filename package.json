@@ -40,6 +40,7 @@
     "react-beforeunload": "^2.5.1",
     "react-loading-skeleton": "^2.2.0",
     "react-router-dom": "^5.2.0",
+    "react-select": "^4.3.1",
     "react-toast-notifications": "^2.4.4",
     "use-debounce": "^6.0.1"
   },

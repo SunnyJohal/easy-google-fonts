@@ -26,6 +26,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 load_all_plugin_files();
 
+
+
 /**
  * Load All Plugin Files
  *
@@ -47,7 +49,10 @@ function load_all_plugin_files() {
 			'data',
 			'deprecated',
 			'frontend',
+			'sanitization',
+			'settings',
 			'setup',
+			'utils',
 		]
 	);
 

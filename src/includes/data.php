@@ -132,6 +132,25 @@ function get_font_control_description( $post_id ) {
 }
 
 /**
+ * Get Font Control Force Styles
+ *
+ * Determines if the force styles flag has
+ * been enabled for this font control.
+ *
+ * @param int $post_id ID of a 'tt_font_control' post.
+ */
+function get_font_control_force_styles( $post_id ) {
+	$force_styles = get_post_meta( $post_id, 'force_styles', true );
+	return rest_sanitize_boolean(
+		apply_filters(
+			'egf_font_control_force_styles',
+			$force_styles,
+			$post_id
+		)
+	);
+}
+
+/**
  * Get Font Control Selectors
  *
  * Gets the css selectors that will be

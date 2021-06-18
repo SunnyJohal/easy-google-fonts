@@ -1,1 +1,1 @@
-console.log('preview.js loaded');
+console.log('preview.js loaded', egfCustomizePreview);
