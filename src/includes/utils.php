@@ -48,27 +48,26 @@ function get_key_from_setting_id( $setting_id, $setting_base = 'tt_font_theme_op
  * Get Default Fonts
  */
 function get_default_fonts() {
-	$weights = [ '400', '400italic', '700', '700italic' ];
-
 	$fonts = [
-		'Arial'               => [ 'weights' => $weights ],
-		'Century Gothic'      => [ 'weights' => $weights ],
-		'Courier New'         => [ 'weights' => $weights ],
-		'Georgia'             => [ 'weights' => $weights ],
-		'Helvetica'           => [ 'weights' => $weights ],
-		'Impact'              => [ 'weights' => $weights ],
-		'Lucida Console'      => [ 'weights' => $weights ],
-		'Lucida Sans Unicode' => [ 'weights' => $weights ],
-		'Palatino Linotype'   => [ 'weights' => $weights ],
-		'sans-serif'          => [ 'weights' => $weights ],
-		'serif'               => [ 'weights' => $weights ],
-		'Tahoma'              => [ 'weights' => $weights ],
-		'Trebuchet MS'        => [ 'weights' => $weights ],
-		'Verdana'             => [ 'weights' => $weights ],
+		'arial'               => [ 'family' => 'Arial' ],
+		'century_gothic'      => [ 'family' => 'Century Gothic' ],
+		'courier_new'         => [ 'family' => 'Courier New' ],
+		'georgia'             => [ 'family' => 'Georgia' ],
+		'helvetica'           => [ 'family' => 'Helvetica' ],
+		'impact'              => [ 'family' => 'Impact' ],
+		'lucida_console'      => [ 'family' => 'Lucida Console' ],
+		'lucida_sans_unicode' => [ 'family' => 'Lucida Sans Unicode' ],
+		'palatino_linotype'   => [ 'family' => 'Palatino linotype' ],
+		'sans-serif'          => [ 'family' => 'sans-serif' ],
+		'serif'               => [ 'family' => 'serif' ],
+		'tahoma'              => [ 'family' => 'Tahoma' ],
+		'trebuchet_ms'        => [ 'family' => 'Trebuchet MS' ],
+		'verdana'             => [ 'family' => 'Verdana' ],
 	];
 
 	foreach ( $fonts as $id => $props ) {
-		$fonts[ $id ]['name'] = $id;
+		$fonts[ $id ]['name']     = $id;
+		$fonts[ $id ]['variants'] = [ '400', '400italic', '700', '700italic' ];
 	}
 
 	return apply_filters( 'egf_get_default_fonts', $fonts );

@@ -9,11 +9,10 @@ import StyleSettings from './StyleSettings';
 import PositionSettings from './PositionSettings';
 
 const EGFFontControl = props => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const { control, resetSetting } = props;
   const { params } = control;
   const { label, description } = params;
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
@@ -53,7 +52,7 @@ const EGFFontControl = props => {
           {/* Actions */}
           <PanelRow className="egf-font-control__actions">
             <Button isTertiary onClick={() => setIsOpen(!isOpen)}>
-              {egfCustomize.translations.controls.common.close_label}
+              {__('Close', 'easy-google-fonts')}
             </Button>
 
             <Button isDestructive onClick={() => resetSetting({ renderAfterUpdate: true })}>

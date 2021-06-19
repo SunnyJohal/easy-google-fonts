@@ -181,7 +181,7 @@ function parse_config_args( $config_arr ) {
 		],
 		'default'           => [
 			'subset'                     => 'latin,all',
-			'font_id'                    => '',
+			'font_id'                    => 'roboto',
 			'font_name'                  => '',
 			'font_color'                 => '',
 			'font_weight'                => '',

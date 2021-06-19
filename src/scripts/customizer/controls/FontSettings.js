@@ -1,9 +1,24 @@
+import { useState } from '@wordpress/element';
 import { SelectControl } from '@wordpress/components';
 
 import FontLanguageControl from './components/FontLanguageControl';
 import FontFamilyControl from './components/FontFamilyControl';
 
 const FontSettings = ({ control }) => {
+  const { className, control } = props;
+  const { updateSettingProps, setting } = control;
+  const { subset: fontSubset, font_id } = setting();
+
+  const [fontId, setFontId] = useState(font_id);
+  const [subset, setSubset] = useState(fontSubset);
+
+  // font_id: `${sanitizeFontKey(family)}`,
+  // font_name: family,
+  // font_weight_style: fontWeightStyle,
+  // font_weight: fontWeight,
+  // font_style: fontStyle,
+  // stylesheet_url: ''
+
   return (
     <div className="egf-font-settings__settings">
       <FontLanguageControl control={control} className="mb-3" />

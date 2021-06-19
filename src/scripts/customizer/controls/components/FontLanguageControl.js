@@ -1,3 +1,4 @@
+import { _x } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 
 const FontLanguageControl = props => {
@@ -13,7 +14,7 @@ const FontLanguageControl = props => {
   return (
     <div className={`egf-font-language-control ${className}`}>
       <SelectControl
-        label={'Language'}
+        label={_x('Language', 'Language field label for the customizer font control.', 'easy-google-fonts')}
         value={subset}
         options={languageOptions}
         onChange={language =>

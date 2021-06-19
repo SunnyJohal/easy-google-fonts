@@ -1,4 +1,5 @@
 import { _x } from '@wordpress/i18n';
+import { sanitizeFontKey } from '../utils/sanitizeFontKey';
 import fallbackGoogleFonts from '../../../fonts/webfonts.json';
 
 export const fetchGoogleFonts = () => {
@@ -41,9 +42,9 @@ export const fetchGoogleFonts = () => {
 const sortFontsByCategory = () => {
   window.egfGoogleFontsByCategory = window.egfGoogleFonts.items.reduce((acc, font) => {
     if (typeof acc[font.category] === 'undefined') {
-      acc[font.category] = [{ ...font, label: font.family, value: font.family.toLowerCase() }];
+      acc[font.category] = [{ ...font, label: font.family, value: sanitizeFontKey(font.family) }];
     } else {
-      acc[font.category].push({ ...font, label: font.family, value: font.family.toLowerCase() });
+      acc[font.category].push({ ...font, label: font.family, value: sanitizeFontKey(font.family) });
     }
     return acc;
   }, {});
@@ -51,7 +52,7 @@ const sortFontsByCategory = () => {
 
 const sortFontsByKey = () => {
   window.egfGoogleFontsByKey = window.egfGoogleFonts.items.reduce((acc, font) => {
-    acc[font.family.toLowerCase().replace(' ', '_')] = font;
+    acc[sanitizeFontKey(font.family)] = font;
     return acc;
   }, {});
 };

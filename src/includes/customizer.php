@@ -39,6 +39,12 @@ add_action(
 			true
 		);
 
+		wp_add_inline_script(
+			'easy-google-fonts/customizer-controls',
+			'egfGoogleFontLanguages = []; egfGoogleFonts = {}; egfGoogleFontsByCategory = {}; egfGoogleFontsByKey = {};',
+			'before'
+		);
+
 		wp_localize_script(
 			'easy-google-fonts/customizer-controls',
 			'egfCustomize',
@@ -115,13 +121,14 @@ function get_customizer_data() {
  */
 function get_control_translations() {
 	$translations = [
-		'common' => [
-			'close_label' => __( 'Close', 'easy-google-fonts' ),
-			'reset_label' => __( 'Reset', 'easy-google-fonts' ),
+		'common'           => [
+			'close_label'         => __( 'Close', 'easy-google-fonts' ),
+			'reset_label'         => __( 'Reset', 'easy-google-fonts' ),
+			'theme_default_label' => __( 'Theme Default', 'easy-google-fonts' ),
 		],
 		'language_control' => [
-			'language_choices' => [
-				'all' => __( 'te', 'easy-google-fonts' ),
+			'labels' => [
+				'all_languages' => __( 'All Languages', 'easy-google-fonts' ),
 			],
 		],
 	];
