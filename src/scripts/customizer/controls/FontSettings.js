@@ -1,9 +1,11 @@
 import { useState } from '@wordpress/element';
 import { SelectControl } from '@wordpress/components';
 
-import FontLanguageControl from './components/FontLanguageControl';
-import FontFamilyControl from './components/FontFamilyControl';
-import FontWeightControl from './components/FontWeightControl';
+import FontLanguageControl from './font/FontLanguageControl';
+import FontFamilyControl from './font/FontFamilyControl';
+import FontWeightControl from './font/FontWeightControl';
+import TextDecorationControl from './font/TextDecorationControl';
+import TextTransformControl from './font/TextTransformControl';
 
 const FontSettings = ({
   control,
@@ -59,32 +61,10 @@ const FontSettings = ({
       />
 
       {/* Text Decoration */}
-      <div className="egf-font-settings__text-decoration-setting mb-3">
-        <SelectControl
-          label={'Text Decoration'}
-          options={[
-            { value: '', label: 'Theme Default' },
-            { value: 'none', label: 'None' },
-            { value: 'underline', label: 'Underline' },
-            { value: 'line-through', label: 'Line-through' },
-            { value: 'overline', label: 'Overline' }
-          ]}
-        />
-      </div>
+      <TextDecorationControl textDecoration={textDecoration} setTextDecoration={setTextDecoration} className="mb-3" />
 
       {/* Text Transform */}
-      <div className="egf-font-settings__text-transform-setting mb-3">
-        <SelectControl
-          label={'Text Transform'}
-          options={[
-            { value: '', label: 'Theme Default' },
-            { value: 'none', label: 'None' },
-            { value: 'uppercase', label: 'Uppercase' },
-            { value: 'lowercase', label: 'Lowercase' },
-            { value: 'capitalize', label: 'Capitalize' }
-          ]}
-        />
-      </div>
+      <TextTransformControl textTransform={textTransform} setTextTransform={setTextTransform} />
     </div>
   );
 };
