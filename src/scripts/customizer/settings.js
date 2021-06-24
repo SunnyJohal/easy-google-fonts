@@ -23,7 +23,11 @@ const registerBaseSettings = () => {
   for (const id in config) {
     const { default: default_value, transport } = config[id];
     wp.customize.add(
-      new customize.Setting(`${setting_key}[${id}]`, saved[id], { transport, default: default_value, type: 'option' })
+      new customize.Setting(`${setting_key}[${id}]`, saved[id], {
+        transport,
+        default: default_value,
+        type: 'option'
+      })
     );
   }
 };
@@ -49,30 +53,30 @@ const registerSubsettings = () => {
         'display',
         'font_size',
         'letter_spacing',
-        'margin-top',
-        'margin-right',
-        'margin-bottom',
+        'margin_top',
+        'margin_right',
+        'margin_bottom',
         'margin_left',
-        'padding-top',
-        'padding-right',
-        'padding-bottom',
+        'padding_top',
+        'padding_right',
+        'padding_bottom',
         'padding_left',
         'border_radius_top_left',
         'border_radius_top_right',
         'border_radius_bottom_left',
         'border_radius_bottom_right',
-        'border-top-color',
-        'border-top-style',
-        'border-top-width',
-        'border-bottom-color',
-        'border-bottom-style',
-        'border-bottom-width',
-        'border-left-color',
-        'border-left-style',
-        'border-left-width',
-        'border-right-color',
-        'border-right-style',
-        'border-right-width'
+        'border_top_color',
+        'border_top_style',
+        'border_top_width',
+        'border_bottom_color',
+        'border_bottom_style',
+        'border_bottom_width',
+        'border_left_color',
+        'border_left_style',
+        'border_left_width',
+        'border_right_color',
+        'border_right_style',
+        'border_right_width'
       ];
 
       const { default: default_value, transport } = config[id];

@@ -17,7 +17,10 @@ use EGF\Data as Data;
  * Register Typography Settings
  */
 function register_settings() {
-	register_setting( 'tt_font_theme_options', 'tt_font_theme_options' );
+	register_setting(
+		'tt_font_theme_options',
+		'tt_font_theme_options'
+	);
 }
 add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
 
@@ -288,6 +291,30 @@ function parse_config_args( $config_arr ) {
 }
 
 /**
+ * Parse Settings With Defaults
+ *
+ * @param mixed  $settings The current value of the saved setting.
+ * @param string $option_name Option name.
+ */
+function parse_settings_with_defaults( $settings, $option_name ) {
+	if ( empty( $settings ) ) {
+		return get_setting_defaults();
+	}
+
+	$parsed_settings = array_intersect_key( $settings, get_setting_defaults() );
+
+	foreach ( get_setting_defaults() as $id => $defaults ) {
+		$parsed_settings[ $id ] = empty( $parsed_settings[ $id ] )
+			? $defaults
+			: wp_parse_args( $parsed_settings[ $id ], $defaults );
+	}
+
+	return $parsed_settings;
+}
+add_filter( 'default_option_tt_font_theme_options', __NAMESPACE__ . '\\parse_settings_with_defaults', 20, 2 );
+add_filter( 'option_tt_font_theme_options', __NAMESPACE__ . '\\parse_settings_with_defaults', 20, 2 );
+
+/**
  * Get Saved plugin Settings
  *
  * Returns the saved values for each setting in
@@ -303,21 +330,6 @@ function get_saved_settings() {
 		get_option( 'tt_font_theme_options', [] )
 	);
 }
-
-/**
- * Parse Options With Defaults
- */
-add_filter(
-	'egf_get_saved_settings',
-	function( $settings ) {
-		return array_intersect_key(
-			wp_parse_args( $settings, get_setting_defaults() ),
-			get_setting_defaults()
-		);
-	},
-	10,
-	1
-);
 
 /**
  * Get Default Theme Settings

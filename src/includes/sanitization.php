@@ -17,18 +17,31 @@ namespace EGF\Sanitization;
  * Determine Sanitization Callback
  *
  * Used to determine the correct sanitization
- * callback for nested settings within another
- * setting.
+ * callback for individual font controls
+ * settings.
+ *
+ * @param string $setting_key Setting key to sanitize.
+ */
+function get_setting_sanitization_callback( $setting_key ) {
+	$sanitize_callback = false;
+	return $sanitize_callback;
+}
+
+/**
+ * Determine Sanitization Callback
+ *
+ * Used to determine the correct sanitization
+ * callback for nested settings within an
+ * individual font setting.
  *
  * @param string $setting_prop_key Setting prop key to sanitize.
  */
 function get_setting_prop_sanitization_callback( $setting_prop_key ) {
 	$sanitize_callback = false;
 
-	// $sanitize_callback = '\EGF\Sanitization\sanitize_font_control';
-
 	switch ( $setting_prop_key ) {
 		case 'value':
+			// $sanitize_callback = '\EGF\Sanitization\sanitize_unit';
 			break;
 
 		default:
@@ -38,6 +51,4 @@ function get_setting_prop_sanitization_callback( $setting_prop_key ) {
 	return $sanitize_callback;
 }
 
-function sanitize_font_control( $input, $setting ) {
-	return $setting;
-}
+// function sanitize_unit() {}

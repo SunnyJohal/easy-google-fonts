@@ -3,31 +3,60 @@ import { SelectControl } from '@wordpress/components';
 
 import FontLanguageControl from './components/FontLanguageControl';
 import FontFamilyControl from './components/FontFamilyControl';
+import FontWeightControl from './components/FontWeightControl';
 
-const FontSettings = ({ control }) => {
-  const { className, control } = props;
-  const { updateSettingProps, setting } = control;
-  const { subset: fontSubset, font_id } = setting();
-
-  const [fontId, setFontId] = useState(font_id);
-  const [subset, setSubset] = useState(fontSubset);
-
-  // font_id: `${sanitizeFontKey(family)}`,
-  // font_name: family,
-  // font_weight_style: fontWeightStyle,
-  // font_weight: fontWeight,
-  // font_style: fontStyle,
-  // stylesheet_url: ''
-
+const FontSettings = ({
+  control,
+  fontId,
+  setFontId,
+  fontName,
+  setFontName,
+  fontWeightStyle,
+  setFontWeightStyle,
+  fontWeight,
+  setFontWeight,
+  fontStyle,
+  setFontStyle,
+  stylesheetUrl,
+  setStylesheetUrl,
+  subset,
+  setSubset,
+  textDecoration,
+  setTextDecoration,
+  textTransform,
+  setTextTransform
+}) => {
   return (
     <div className="egf-font-settings__settings">
-      <FontLanguageControl control={control} className="mb-3" />
-      <FontFamilyControl control={control} className="mb-3" />
+      <FontLanguageControl control={control} subset={subset} setSubset={setSubset} className="mb-3" />
+      <FontFamilyControl
+        control={control}
+        subset={subset}
+        fontId={fontId}
+        setFontId={setFontId}
+        fontName={fontName}
+        setFontName={setFontName}
+        fontWeight={fontWeight}
+        setFontWeight={setFontWeight}
+        fontStyle={fontStyle}
+        setFontStyle={setFontStyle}
+        fontWeightStyle={fontWeightStyle}
+        setFontWeightStyle={setFontWeightStyle}
+        stylesheetUrl={stylesheetUrl}
+        setStylesheetUrl={setStylesheetUrl}
+        className="mb-3"
+      />
 
       {/* Font Weight/Style */}
-      <div className="egf-font-settings__font-weight-setting mb-3">
-        <SelectControl label={'Font Weight/Style'} options={[{ value: '', label: 'Theme Default' }]} />
-      </div>
+      <FontWeightControl
+        control={control}
+        fontId={fontId}
+        setFontWeight={setFontWeight}
+        setFontStyle={setFontStyle}
+        fontWeightStyle={fontWeightStyle}
+        setFontWeightStyle={setFontWeightStyle}
+        className="mb-3"
+      />
 
       {/* Text Decoration */}
       <div className="egf-font-settings__text-decoration-setting mb-3">

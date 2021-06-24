@@ -8,8 +8,8 @@ const { customize } = wp;
 const { control, Control, controlConstructor } = customize;
 
 export const registerControls = () => {
+  setupFontControl();
   customize.bind('ready', () => {
-    setupFontControl();
     registerFontControls();
   });
 };
@@ -170,7 +170,7 @@ const setupFontControl = () => {
      *
      * @return {void}
      */
-    resetSetting({ renderAfterUpdate = true }) {
+    resetSetting({ renderAfterUpdate = false }) {
       const { setting, renderContent } = this;
       setting.set(setting.default);
 
@@ -189,7 +189,7 @@ const setupFontControl = () => {
      * @param {object} props - New props to set in the setting (model).
      * @return {void}
      */
-    updateSetting({ props, renderAfterUpdate = true }) {
+    updateSetting({ props, renderAfterUpdate = false }) {
       const { setting, renderContent } = this;
       setting.set(props);
 
@@ -210,7 +210,7 @@ const setupFontControl = () => {
      *                         setting prop that you want to update.
      * @return {void}
      */
-    updateSettingProps({ props, renderAfterUpdate = true }) {
+    updateSettingProps({ props, renderAfterUpdate = false }) {
       const { setting, renderContent } = this;
       setting.set({ ...setting(), ...props });
 

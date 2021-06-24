@@ -146,7 +146,7 @@ add_filter(
 
 		preg_match( $id_pattern, $setting_id, $matches );
 
-		$setting_key = empty( $matches ) ? false : $matches[0];
+		$setting_key = empty( $matches ) ? false : $matches[1];
 
 		$config = Settings\get_settings_config();
 
@@ -158,7 +158,7 @@ add_filter(
 
 		$transport         = empty( $setting_props['transport'] ) ? 'refresh' : $setting_props['transport'];
 		$default           = isset( $setting_props['default'] ) ? '' : $setting_props['default'];
-		$sanitize_callback = empty( $setting_props['sanitize_callback'] ) ? false : $setting_props['sanitize_callback'];
+		$sanitize_callback = Sanitization\get_setting_sanitization_callback( $setting_key );
 
 		return [
 			'default'           => $default,
@@ -182,8 +182,8 @@ add_filter(
 
 		preg_match( $id_pattern, $setting_id, $matches );
 
-		$setting_key      = empty( $matches ) ? false : $matches[0];
-		$setting_key_prop = empty( $matches ) ? false : $matches[1];
+		$setting_key      = empty( $matches ) ? false : $matches[1];
+		$setting_key_prop = empty( $matches ) ? false : $matches[2];
 
 		$config = Settings\get_settings_config();
 
@@ -191,7 +191,7 @@ add_filter(
 			empty( $setting_key ) ||
 			empty( $setting_key_prop ) ||
 			! array_key_exists( $setting_key, $config ) ||
-			! array_key_exists( $setting_key_prop, $config[ $setting_key ] )
+			! array_key_exists( $setting_key_prop, $config[ $setting_key ]['default'] )
 		) {
 			return $setting_args;
 		}
@@ -200,8 +200,8 @@ add_filter(
 
 		if ( 'font' === $setting_props['type'] ) {
 			$transport         = empty( $setting_props['transport'] ) ? 'refresh' : $setting_props['transport'];
-			$default           = isset( $setting_props['default'][ $setting_prop_key ] ) ? '' : $setting_props['default'][ $setting_prop_key ];
-			$sanitize_callback = get_setting_prop_sanitization_callback( $setting_key_prop );
+			$default           = isset( $setting_props['default'][ $setting_key_prop ] ) ? '' : $setting_props['default'][ $setting_key_prop ];
+			$sanitize_callback = Sanitization\get_setting_prop_sanitization_callback( $setting_key_prop );
 
 			$setting_args = [
 				'default'           => $default,

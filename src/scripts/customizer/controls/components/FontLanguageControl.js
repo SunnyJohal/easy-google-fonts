@@ -2,13 +2,20 @@ import { _x } from '@wordpress/i18n';
 import { SelectControl } from '@wordpress/components';
 
 const FontLanguageControl = props => {
-  const { className, control } = props;
-  const { updateSettingProps, setting } = control;
-  const { subset } = setting();
+  const { className, subset, setSubset } = props;
 
   const languageOptions = [
-    { value: 'latin,all', label: 'All Languages' },
-    ...window.egfGoogleFontLanguages.map(language => ({ value: language, label: language }))
+    {
+      value: 'latin,all',
+      label: _x(
+        'All Languages',
+        'Label for the all languages option in the language dropdown in the customizer.',
+        'easy-google-fonts'
+      )
+    },
+    ...window.egfGoogleFontLanguages
+      .map(language => ({ value: language, label: language }))
+      .sort((a, b) => (a.value > b.value ? 1 : -1))
   ];
 
   return (
@@ -17,14 +24,7 @@ const FontLanguageControl = props => {
         label={_x('Language', 'Language field label for the customizer font control.', 'easy-google-fonts')}
         value={subset}
         options={languageOptions}
-        onChange={language =>
-          updateSettingProps({
-            props: {
-              subset: language
-            },
-            renderAfterUpdate: true
-          })
-        }
+        onChange={setSubset}
       />
     </div>
   );

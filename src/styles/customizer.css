@@ -21,3 +21,6 @@
   padding-bottom: 8px;
 }
 /* Font Settings Tab */
+.egf-font-weight-control select {
+  text-transform: capitalize;
+}
