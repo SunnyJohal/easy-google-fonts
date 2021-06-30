@@ -9,88 +9,65 @@ import {
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
+import BackgroundColorControl from './style/BackgroundColorControl';
+import FontColorControl from './style/FontColorControl';
+import FontSizeControl from './style/FontSizeControl';
+import LineHeightControl from './style/LineHeightControl';
+import LetterSpacingControl from './style/LetterSpacingControl';
+
 const customTooltipContent = value => `${value}`;
 
 const { theme_colors } = egfCustomize;
 
-const StyleSettings = () => {
+const StyleSettings = ({
+  control,
+  fontColor,
+  setFontColor,
+  backgroundColor,
+  setBackgroundColor,
+  fontSize,
+  setFontSize,
+  lineHeight,
+  setLineHeight,
+  letterSpacing,
+  setLetterSpacing
+}) => {
   const [value, setValue] = useState('10px');
-  const [color, setColor] = useState('');
+
   return (
-    <div className="egf-font-control__settings" style={{ paddingTop: 16, paddingBottom: 8 }}>
-      {/* Font Color */}
-      <PanelRow>
-        <label>Font Color</label>
-        <Button isSecondary isSmall>
-          Reset
-        </Button>
-      </PanelRow>
-      <ColorPalette color={color} colors={theme_colors} onChange={setColor} clearable={false} disableAlpha={true} />
+    <div className="egf-style-settings__settings" style={{ paddingTop: 16, paddingBottom: 8 }}>
+      <FontColorControl className="mb-4" control={control} fontColor={fontColor} setFontColor={setFontColor} />
 
-      <hr style={{ marginTop: 16, marginBottom: 24 }} />
+      <hr />
 
-      {/* Background Color */}
-      <PanelRow>
-        <div>
-          <label>Background Color</label>
-          <ColorIndicator color={color} />
-        </div>
-        <Button isSecondary isSmall>
-          Reset
-        </Button>
-      </PanelRow>
-      <ColorPalette color={color} colors={theme_colors} onChange={setColor} clearable={false} disableAlpha={true} />
-
-      <hr style={{ marginTop: 16, marginBottom: 24 }} />
-
-      {/* Font Size */}
-      <RangeControl
-        label={'Font Size'}
-        value={value}
-        onChange={setValue}
-        renderTooltipContent={customTooltipContent}
-        withInputField={false}
+      <BackgroundColorControl
+        className="mt-3 mb-4"
+        control={control}
+        backgroundColor={backgroundColor}
+        setBackgroundColor={setBackgroundColor}
       />
-      <PanelRow>
-        <UnitControl onChange={setValue} value={value} />
-        <Button isSecondary isSmall>
-          Reset
-        </Button>
-      </PanelRow>
 
-      <hr style={{ marginTop: 16, marginBottom: 24 }} />
+      <hr />
 
-      {/* Line Height */}
-      <RangeControl
-        label={'Line Height'}
-        value={value}
-        onChange={setValue}
-        renderTooltipContent={customTooltipContent}
-        withInputField={false}
+      <FontSizeControl className="mt-3 mb-4" control={control} fontSize={fontSize} setFontSize={setFontSize} />
+
+      <hr />
+
+      <LineHeightControl
+        className="mt-3 mb-4"
+        control={control}
+        lineHeight={lineHeight}
+        setLineHeight={setLineHeight}
       />
-      <PanelRow>
-        <UnitControl onChange={setValue} value={value} />
-        <Button isSecondary isSmall>
-          Reset
-        </Button>
-      </PanelRow>
 
-      <hr style={{ marginTop: 16, marginBottom: 24 }} />
+      <hr />
 
-      {/* Letter Spacing */}
-      <RangeControl
-        label={'Letter Spacing'}
-        value={value}
-        onChange={setValue}
-        renderTooltipContent={customTooltipContent}
-        withInputField={false}
+      <LetterSpacingControl
+        className="mt-3 mb-3"
+        control={control}
+        letterSpacing={letterSpacing}
+        setLetterSpacing={setLetterSpacing}
       />
-      <PanelRow>
-        <UnitControl onChange={setValue} value={value} />
-        <Button isSecondary isSmall>
-          Reset
-        </Button>
-      </PanelRow>
     </div>
   );
 };

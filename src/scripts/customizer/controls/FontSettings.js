@@ -64,7 +64,7 @@ const FontSettings = ({
       <TextDecorationControl textDecoration={textDecoration} setTextDecoration={setTextDecoration} className="mb-3" />
 
       {/* Text Transform */}
-      <TextTransformControl textTransform={textTransform} setTextTransform={setTextTransform} />
+      <TextTransformControl textTransform={textTransform} setTextTransform={setTextTransform} className="mb-3" />
     </div>
   );
 };

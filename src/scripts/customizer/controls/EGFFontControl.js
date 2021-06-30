@@ -109,14 +109,12 @@ const EGFFontControl = props => {
   useEffect(() => syncCustomizerWithState('border_left_color', borderLeftColor), [borderLeftColor]);
   useEffect(() => syncCustomizerWithState('border_left_style', borderLeftStyle), [borderLeftStyle]);
   useEffect(() => syncCustomizerWithState('border_left_width', borderLeftWidth), [borderLeftWidth]);
-  useEffect(
-    () => syncCustomizerWithState('border_radius_bottom_left', borderRadiusBottomLeft),
-    [borderRadiusBottomLeft]
-  );
-  useEffect(
-    () => syncCustomizerWithState('border_radius_bottom_right', borderRadiusBottomRight),
-    [borderRadiusBottomRight]
-  );
+  useEffect(() => syncCustomizerWithState('border_radius_bottom_left', borderRadiusBottomLeft), [
+    borderRadiusBottomLeft
+  ]);
+  useEffect(() => syncCustomizerWithState('border_radius_bottom_right', borderRadiusBottomRight), [
+    borderRadiusBottomRight
+  ]);
   useEffect(() => syncCustomizerWithState('border_radius_top_left', borderRadiusTopLeft), [borderRadiusTopLeft]);
   useEffect(() => syncCustomizerWithState('border_radius_top_right', borderRadiusTopRight), [borderRadiusTopRight]);
   useEffect(() => syncCustomizerWithState('border_right_color', borderRightColor), [borderRightColor]);
@@ -240,7 +238,7 @@ const EGFFontControl = props => {
       <Panel>
         <PanelBody title={label} icon="more" initialOpen={false} opened={isOpen} onToggle={() => setIsOpen(!isOpen)}>
           {/* Description */}
-          {description && <p className="description customize-control-description">{description}</p>}
+          {description && <p className="description customize-control-description mb-2">{description}</p>}
 
           {/* Settings */}
           <TabPanel
