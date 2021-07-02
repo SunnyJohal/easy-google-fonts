@@ -127,6 +127,114 @@ export const MARGIN_UNITS = {
 };
 
 /**
+ * Padding Units
+ */
+export const PADDING_UNITS = {
+  px: {
+    value: 'px',
+    label: isWeb ? 'px' : __('Pixels (px)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: __('Pixels (px)', 'easy-google-fonts'),
+    initial: 0,
+    min: 0,
+    max: 400,
+    step: 1
+  },
+  em: {
+    value: 'em',
+    label: isWeb ? 'em' : __('Relative to parent font size (em)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: _x('ems', 'Relative to parent font size (em)', 'easy-google-fonts'),
+    initial: 0,
+    min: 0,
+    max: 25,
+    step: 0.01
+  },
+  rem: {
+    value: 'rem',
+    label: isWeb ? 'rem' : __('Relative to root font size (rem)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: _x('rems', 'Relative to root font size (rem)', 'easy-google-fonts'),
+    initial: 0,
+    min: 0,
+    max: 25,
+    step: 0.01
+  }
+};
+
+/**
+ * Border Units
+ */
+export const BORDER_UNITS = {
+  px: {
+    value: 'px',
+    label: isWeb ? 'px' : __('Pixels (px)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: __('Pixels (px)', 'easy-google-fonts'),
+    initial: 16,
+    min: 0,
+    max: 100,
+    step: 1
+  },
+  em: {
+    value: 'em',
+    label: isWeb ? 'em' : __('Relative to parent font size (em)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: _x('ems', 'Relative to parent font size (em)', 'easy-google-fonts'),
+    initial: 1,
+    min: 0.625,
+    max: 6.25,
+    step: 0.01
+  },
+  rem: {
+    value: 'rem',
+    label: isWeb ? 'rem' : __('Relative to root font size (rem)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: _x('rems', 'Relative to root font size (rem)', 'easy-google-fonts'),
+    initial: 1,
+    min: 0.625,
+    max: 6.25,
+    step: 0.01
+  }
+};
+
+/**
+ * Border Radius Units
+ */
+export const BORDER_RADIUS_UNITS = {
+  px: {
+    value: 'px',
+    label: isWeb ? 'px' : __('Pixels (px)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: __('Pixels (px)', 'easy-google-fonts'),
+    initial: 16,
+    min: 0,
+    max: 100,
+    step: 1
+  },
+  em: {
+    value: 'em',
+    label: isWeb ? 'em' : __('Relative to parent font size (em)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: _x('ems', 'Relative to parent font size (em)', 'easy-google-fonts'),
+    initial: 1,
+    min: 0.625,
+    max: 6.25,
+    step: 0.01
+  },
+  rem: {
+    value: 'rem',
+    label: isWeb ? 'rem' : __('Relative to root font size (rem)', 'easy-google-fonts'),
+    default: '',
+    a11yLabel: _x('rems', 'Relative to root font size (rem)', 'easy-google-fonts'),
+    initial: 1,
+    min: 0.625,
+    max: 6.25,
+    step: 0.01
+  }
+};
+
+/**
  * Parses a number and unit from a value.
  *
  * @param {string}        initialValue Value to parse

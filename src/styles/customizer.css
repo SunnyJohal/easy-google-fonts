@@ -116,3 +116,70 @@
 .egf-position-settings__settings .component-box-control__header {
   display: none;
 }
+
+.egf-margin-control__top .components-range-control__wrapper,
+.egf-margin-control__bottom .components-range-control__wrapper,
+.egf-margin-control__left .components-range-control__wrapper,
+.egf-margin-control__right .components-range-control__wrapper {
+  margin-left: 0;
+}
+
+.egf-margin-control__top .components-unit-control-wrapper,
+.egf-margin-control__bottom .components-unit-control-wrapper,
+.egf-margin-control__left .components-unit-control-wrapper,
+.egf-margin-control__right .components-unit-control-wrapper {
+  min-width: 88px;
+  max-width: 88px;
+}
+
+.egf-padding-control__top .components-range-control__wrapper,
+.egf-padding-control__bottom .components-range-control__wrapper,
+.egf-padding-control__left .components-range-control__wrapper,
+.egf-padding-control__right .components-range-control__wrapper {
+  margin-left: 0;
+}
+
+.egf-padding-control__top .components-unit-control-wrapper,
+.egf-padding-control__bottom .components-unit-control-wrapper,
+.egf-padding-control__left .components-unit-control-wrapper,
+.egf-padding-control__right .components-unit-control-wrapper {
+  min-width: 88px;
+  max-width: 88px;
+}
+
+.egf-border-radius-control__top-left .components-range-control__wrapper,
+.egf-border-radius-control__top-right .components-range-control__wrapper,
+.egf-border-radius-control__bottom-left .components-range-control__wrapper,
+.egf-border-radius-control__bottom-right .components-range-control__wrapper {
+  margin-left: 0;
+}
+
+.egf-border-radius-control__top-left .components-unit-control-wrapper,
+.egf-border-radius-control__top-right .components-unit-control-wrapper,
+.egf-border-radius-control__bottom-left .components-unit-control-wrapper,
+.egf-border-radius-control__bottom-right .components-unit-control-wrapper {
+  min-width: 88px;
+  max-width: 88px;
+}
+
+.egf-border-control__top .components-range-control__wrapper,
+.egf-border-control__bottom .components-range-control__wrapper,
+.egf-border-control__left .components-range-control__wrapper,
+.egf-border-control__right .components-range-control__wrapper {
+  margin-left: 0;
+}
+
+.egf-border-control__top .components-unit-control-wrapper,
+.egf-border-control__bottom .components-unit-control-wrapper,
+.egf-border-control__left .components-unit-control-wrapper,
+.egf-border-control__right .components-unit-control-wrapper {
+  min-width: 88px;
+  max-width: 88px;
+}
+
+.egf-border-control__top .components-circular-option-picker__dropdown-link-action,
+.egf-border-control__bottom .components-circular-option-picker__dropdown-link-action,
+.egf-border-control__left .components-circular-option-picker__dropdown-link-action,
+.egf-border-control__right .components-circular-option-picker__dropdown-link-action {
+  margin-right: 0;
+}

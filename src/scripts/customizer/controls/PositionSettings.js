@@ -1,7 +1,7 @@
-import { __experimentalBoxControl as BoxControl } from '@wordpress/components';
-import { useState } from '@wordpress/element';
-
 import MarginControl from './position/MarginControl';
+import PaddingControl from './position/PaddingControl';
+import BorderControl from './position/BorderControl';
+import BorderRadiusControl from './position/BorderRadiusControl';
 import DisplayControl from './position/DisplayControl';
 
 const PositionSettings = ({
@@ -57,13 +57,6 @@ const PositionSettings = ({
   display,
   setDisplay
 }) => {
-  const [values, setValues] = useState({
-    top: '50px',
-    left: '10%',
-    right: '10%',
-    bottom: '50px'
-  });
-
   return (
     <div className="egf-position-settings__settings">
       <MarginControl
@@ -79,10 +72,60 @@ const PositionSettings = ({
         setMarginTop={setMarginTop}
       />
 
-      {/* Padding: Top | Bottom | Left | Right */}
-      {/* Border (Style/Width/Color): Top | Bottom | Left | Right */}
-      {/* Border Radius: Top | Bottom | Left | Right */}
-      {/* Display: Block inline*/}
+      <PaddingControl
+        className="mb-2"
+        control={control}
+        paddingBottom={paddingBottom}
+        setPaddingBottom={setPaddingBottom}
+        paddingLeft={paddingLeft}
+        setPaddingLeft={setPaddingLeft}
+        paddingRight={paddingRight}
+        setPaddingRight={setPaddingRight}
+        paddingTop={paddingTop}
+        setPaddingTop={setPaddingTop}
+      />
+
+      <BorderControl
+        className="mb-2"
+        control={control}
+        borderTopColor={borderTopColor}
+        setBorderTopColor={setBorderTopColor}
+        borderTopStyle={borderTopStyle}
+        setBorderTopStyle={setBorderTopStyle}
+        borderTopWidth={borderTopWidth}
+        setBorderTopWidth={setBorderTopWidth}
+        borderBottomColor={borderBottomColor}
+        setBorderBottomColor={setBorderBottomColor}
+        borderBottomStyle={borderBottomStyle}
+        setBorderBottomStyle={setBorderBottomStyle}
+        borderBottomWidth={borderBottomWidth}
+        setBorderBottomWidth={setBorderBottomWidth}
+        borderLeftColor={borderLeftColor}
+        setBorderLeftColor={setBorderLeftColor}
+        borderLeftStyle={borderLeftStyle}
+        setBorderLeftStyle={setBorderLeftStyle}
+        borderLeftWidth={borderLeftWidth}
+        setBorderLeftWidth={setBorderLeftWidth}
+        borderRightColor={borderRightColor}
+        setBorderRightColor={setBorderRightColor}
+        borderRightStyle={borderRightStyle}
+        setBorderRightStyle={setBorderRightStyle}
+        borderRightWidth={borderRightWidth}
+        setBorderRightWidth={setBorderRightWidth}
+      />
+
+      <BorderRadiusControl
+        className="mb-2"
+        control={control}
+        borderRadiusBottomLeft={borderRadiusBottomLeft}
+        setBorderRadiusBottomLeft={setBorderRadiusBottomLeft}
+        borderRadiusBottomRight={borderRadiusBottomRight}
+        setBorderRadiusBottomRight={setBorderRadiusBottomRight}
+        borderRadiusTopLeft={borderRadiusTopLeft}
+        setBorderRadiusTopLeft={setBorderRadiusTopLeft}
+        borderRadiusTopRight={borderRadiusTopRight}
+        setBorderRadiusTopRight={setBorderRadiusTopRight}
+      />
 
       <DisplayControl className="mb-3" display={display} setDisplay={setDisplay} />
     </div>

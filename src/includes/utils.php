@@ -29,6 +29,7 @@ function get_google_api_key() {
  * Used to return the array key from the setting
  * id in the customizer.
  * e.g. 'tt_font_theme_options[my_key]' returns 'my_key'
+ * e.g. 'tt_font_theme_options[my_key][setting]' returns 'my_key'
  *
  * @param string $setting_id   Full setting id key.
  * @param string $setting_base Base setting array key.
@@ -36,6 +37,12 @@ function get_google_api_key() {
  */
 function get_key_from_setting_id( $setting_id, $setting_base = 'tt_font_theme_options' ) {
 	$id_pattern = '/^' . $setting_base . '\[([a-zA-Z0-9_-]+)\]$/';
+
+	if ( preg_match( $id_pattern, $setting_id, $matches ) ) {
+		return $matches[1];
+	}
+
+	$id_pattern = '/^' . $setting_base . '\[([a-zA-Z0-9_-]+)\]\[([a-zA-Z0-9_-]+)\]$/';
 
 	if ( preg_match( $id_pattern, $setting_id, $matches ) ) {
 		return $matches[1];

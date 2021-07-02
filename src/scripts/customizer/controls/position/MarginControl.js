@@ -140,137 +140,135 @@ const MarginControl = props => {
   let rightUnitSelected = sanitizeUnit(marginRight.unit) || 'px';
 
   return (
-    <div className={`egf-margin-control ${className}`}>
-      <Panel>
-        <PanelBody title={__('Margin', 'easy-google-fonts')} initialOpen={false}>
-          {/* Margin Top */}
-          <div className="egf-margin-control__top">
-            <RangeControl
-              label={__('Margin Top', 'easy-google-fonts')}
-              value={marginTop.amount}
+    <Panel className={`egf-margin-control ${className}`}>
+      <PanelBody title={__('Margin', 'easy-google-fonts')} initialOpen={false}>
+        {/* Margin Top */}
+        <div className="egf-margin-control__top">
+          <RangeControl
+            label={__('Margin Top', 'easy-google-fonts')}
+            value={marginTop.amount}
+            min={MARGIN_UNITS[topUnitSelected].min}
+            max={MARGIN_UNITS[topUnitSelected].max}
+            step={MARGIN_UNITS[topUnitSelected].step}
+            initialPosition={marginTop.amount}
+            onChange={updateRangeControlMarginTop}
+            renderTooltipContent={() => `${marginTop.amount}${marginTop.unit}`}
+            withInputField={false}
+          />
+          <PanelRow className="mt-2">
+            <UnitControl
               min={MARGIN_UNITS[topUnitSelected].min}
               max={MARGIN_UNITS[topUnitSelected].max}
               step={MARGIN_UNITS[topUnitSelected].step}
-              initialPosition={marginTop.amount}
-              onChange={updateRangeControlMarginTop}
-              renderTooltipContent={() => `${marginTop.amount}${marginTop.unit}`}
-              withInputField={false}
+              size="small"
+              onChange={updateUnitControlMarginTop}
+              onUnitChange={onUnitChangeMarginTop}
+              value={`${marginTop.amount}${marginTop.unit}`}
+              units={Object.values(MARGIN_UNITS)}
             />
-            <PanelRow className="mt-2">
-              <UnitControl
-                min={MARGIN_UNITS[topUnitSelected].min}
-                max={MARGIN_UNITS[topUnitSelected].max}
-                step={MARGIN_UNITS[topUnitSelected].step}
-                size="small"
-                onChange={updateUnitControlMarginTop}
-                onUnitChange={onUnitChangeMarginTop}
-                value={`${marginTop.amount}${marginTop.unit}`}
-                units={Object.values(MARGIN_UNITS)}
-              />
-              <Button isSecondary isSmall onClick={resetMarginTop}>
-                {__('Reset', 'easy-google-fonts')}
-              </Button>
-            </PanelRow>
-          </div>
+            <Button isSecondary isSmall onClick={resetMarginTop}>
+              {__('Reset', 'easy-google-fonts')}
+            </Button>
+          </PanelRow>
+        </div>
 
-          <hr className="my-4" />
+        <hr className="my-4" />
 
-          {/* Margin Bottom */}
-          <div className="egf-margin-control__bottom">
-            <RangeControl
-              label={__('Margin Bottom', 'easy-google-fonts')}
-              value={marginBottom.amount}
+        {/* Margin Bottom */}
+        <div className="egf-margin-control__bottom">
+          <RangeControl
+            label={__('Margin Bottom', 'easy-google-fonts')}
+            value={marginBottom.amount}
+            min={MARGIN_UNITS[bottomUnitSelected].min}
+            max={MARGIN_UNITS[bottomUnitSelected].max}
+            step={MARGIN_UNITS[bottomUnitSelected].step}
+            initialPosition={marginBottom.amount}
+            onChange={updateRangeControlMarginBottom}
+            renderTooltipContent={() => `${marginBottom.amount}${marginBottom.unit}`}
+            withInputField={false}
+          />
+          <PanelRow className="mt-2">
+            <UnitControl
               min={MARGIN_UNITS[bottomUnitSelected].min}
               max={MARGIN_UNITS[bottomUnitSelected].max}
               step={MARGIN_UNITS[bottomUnitSelected].step}
-              initialPosition={marginBottom.amount}
-              onChange={updateRangeControlMarginBottom}
-              renderTooltipContent={() => `${marginBottom.amount}${marginBottom.unit}`}
-              withInputField={false}
+              size="small"
+              onChange={updateUnitControlMarginBottom}
+              onUnitChange={onUnitChangeMarginBottom}
+              value={`${marginBottom.amount}${marginBottom.unit}`}
+              units={Object.values(MARGIN_UNITS)}
             />
-            <PanelRow className="mt-2">
-              <UnitControl
-                min={MARGIN_UNITS[bottomUnitSelected].min}
-                max={MARGIN_UNITS[bottomUnitSelected].max}
-                step={MARGIN_UNITS[bottomUnitSelected].step}
-                size="small"
-                onChange={updateUnitControlMarginBottom}
-                onUnitChange={onUnitChangeMarginBottom}
-                value={`${marginBottom.amount}${marginBottom.unit}`}
-                units={Object.values(MARGIN_UNITS)}
-              />
-              <Button isSecondary isSmall onClick={resetMarginBottom}>
-                {__('Reset', 'easy-google-fonts')}
-              </Button>
-            </PanelRow>
-          </div>
+            <Button isSecondary isSmall onClick={resetMarginBottom}>
+              {__('Reset', 'easy-google-fonts')}
+            </Button>
+          </PanelRow>
+        </div>
 
-          <hr className="my-4" />
+        <hr className="my-4" />
 
-          {/* Margin Left */}
-          <div className="egf-margin-control__left">
-            <RangeControl
-              label={__('Margin Left', 'easy-google-fonts')}
-              value={marginLeft.amount}
+        {/* Margin Left */}
+        <div className="egf-margin-control__left">
+          <RangeControl
+            label={__('Margin Left', 'easy-google-fonts')}
+            value={marginLeft.amount}
+            min={MARGIN_UNITS[leftUnitSelected].min}
+            max={MARGIN_UNITS[leftUnitSelected].max}
+            step={MARGIN_UNITS[leftUnitSelected].step}
+            initialPosition={marginLeft.amount}
+            onChange={updateRangeControlMarginLeft}
+            renderTooltipContent={() => `${marginLeft.amount}${marginLeft.unit}`}
+            withInputField={false}
+          />
+          <PanelRow className="mt-2">
+            <UnitControl
               min={MARGIN_UNITS[leftUnitSelected].min}
               max={MARGIN_UNITS[leftUnitSelected].max}
               step={MARGIN_UNITS[leftUnitSelected].step}
-              initialPosition={marginLeft.amount}
-              onChange={updateRangeControlMarginLeft}
-              renderTooltipContent={() => `${marginLeft.amount}${marginLeft.unit}`}
-              withInputField={false}
+              size="small"
+              onChange={updateUnitControlMarginLeft}
+              onUnitChange={onUnitChangeMarginLeft}
+              value={`${marginLeft.amount}${marginLeft.unit}`}
+              units={Object.values(MARGIN_UNITS)}
             />
-            <PanelRow className="mt-2">
-              <UnitControl
-                min={MARGIN_UNITS[leftUnitSelected].min}
-                max={MARGIN_UNITS[leftUnitSelected].max}
-                step={MARGIN_UNITS[leftUnitSelected].step}
-                size="small"
-                onChange={updateUnitControlMarginLeft}
-                onUnitChange={onUnitChangeMarginLeft}
-                value={`${marginLeft.amount}${marginLeft.unit}`}
-                units={Object.values(MARGIN_UNITS)}
-              />
-              <Button isSecondary isSmall onClick={resetMarginLeft}>
-                {__('Reset', 'easy-google-fonts')}
-              </Button>
-            </PanelRow>
-          </div>
+            <Button isSecondary isSmall onClick={resetMarginLeft}>
+              {__('Reset', 'easy-google-fonts')}
+            </Button>
+          </PanelRow>
+        </div>
 
-          <hr className="my-4" />
+        <hr className="my-4" />
 
-          {/* Margin Right */}
-          <div className="egf-margin-control__right">
-            <RangeControl
-              label={__('Margin Right', 'easy-google-fonts')}
-              value={marginRight.amount}
+        {/* Margin Right */}
+        <div className="egf-margin-control__right">
+          <RangeControl
+            label={__('Margin Right', 'easy-google-fonts')}
+            value={marginRight.amount}
+            min={MARGIN_UNITS[rightUnitSelected].min}
+            max={MARGIN_UNITS[rightUnitSelected].max}
+            step={MARGIN_UNITS[rightUnitSelected].step}
+            initialPosition={marginRight.amount}
+            onChange={updateRangeControlMarginRight}
+            renderTooltipContent={() => `${marginRight.amount}${marginRight.unit}`}
+            withInputField={false}
+          />
+          <PanelRow className="mt-2">
+            <UnitControl
               min={MARGIN_UNITS[rightUnitSelected].min}
               max={MARGIN_UNITS[rightUnitSelected].max}
               step={MARGIN_UNITS[rightUnitSelected].step}
-              initialPosition={marginRight.amount}
-              onChange={updateRangeControlMarginRight}
-              renderTooltipContent={() => `${marginRight.amount}${marginRight.unit}`}
-              withInputField={false}
+              size="small"
+              onChange={updateUnitControlMarginRight}
+              onUnitChange={onUnitChangeMarginRight}
+              value={`${marginRight.amount}${marginRight.unit}`}
+              units={Object.values(MARGIN_UNITS)}
             />
-            <PanelRow className="mt-2">
-              <UnitControl
-                min={MARGIN_UNITS[rightUnitSelected].min}
-                max={MARGIN_UNITS[rightUnitSelected].max}
-                step={MARGIN_UNITS[rightUnitSelected].step}
-                size="small"
-                onChange={updateUnitControlMarginRight}
-                onUnitChange={onUnitChangeMarginRight}
-                value={`${marginRight.amount}${marginRight.unit}`}
-                units={Object.values(MARGIN_UNITS)}
-              />
-              <Button isSecondary isSmall onClick={resetMarginRight}>
-                {__('Reset', 'easy-google-fonts')}
-              </Button>
-            </PanelRow>
-          </div>
-        </PanelBody>
-      </Panel>
-    </div>
+            <Button isSecondary isSmall onClick={resetMarginRight}>
+              {__('Reset', 'easy-google-fonts')}
+            </Button>
+          </PanelRow>
+        </div>
+      </PanelBody>
+    </Panel>
   );
 };
 

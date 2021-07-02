@@ -40,6 +40,11 @@ class EGF_Test_Utils extends WP_UnitTestCase {
 			Utils\get_key_from_setting_id( 'test_option_prefix[setting_key]', 'test_option_prefix' ),
 			'setting_key'
 		);
+
+		$this->assertEquals(
+			Utils\get_key_from_setting_id( 'test_option_prefix[setting_key][with_prop]', 'test_option_prefix' ),
+			'setting_key'
+		);
 	}
 
 	/**
@@ -52,7 +57,7 @@ class EGF_Test_Utils extends WP_UnitTestCase {
 
 		foreach ( $default_fonts as $id => $props ) {
 			$this->assertArrayHasKey( 'name', $props );
-			$this->assertArrayHasKey( 'weights', $props );
+			$this->assertArrayHasKey( 'variants', $props );
 		}
 	}
 
