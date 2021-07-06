@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Button, Panel, PanelBody, PanelRow, TabPanel } from '@wordpress/components';
 import { useEffect, useState, useRef } from '@wordpress/element';
 
@@ -10,7 +10,7 @@ import PositionSettings from './PositionSettings';
 
 const EGFFontControl = props => {
   const { control } = props;
-  const { label, description } = control.params;
+  const { label, description, properties } = control.params;
 
   const {
     background_color,
@@ -146,6 +146,14 @@ const EGFFontControl = props => {
   useEffect(() => syncCustomizerWithState('text_decoration', textDecoration), [textDecoration]);
   useEffect(() => syncCustomizerWithState('text_transform', textTransform), [textTransform]);
 
+  // Send google stylesheet data to the preview.
+  useEffect(() => {
+    wp.customize.previewer.send(control.id, {
+      fontName,
+      fontWeightStyle
+    });
+  }, [fontName, fontWeightStyle]);
+
   /**
    * Reset Control
    */
@@ -233,12 +241,36 @@ const EGFFontControl = props => {
     setTextTransform(text_transform);
   };
 
+  const isMediaQueryControl = properties.min_screen.amount || properties.max_screen.amount;
+
   return (
     <div>
       <Panel>
         <PanelBody title={label} icon="more" initialOpen={false} opened={isOpen} onToggle={() => setIsOpen(!isOpen)}>
           {/* Description */}
           {description && <p className="description customize-control-description mb-2">{description}</p>}
+
+          {isMediaQueryControl && (
+            <div className="mt-3">
+              <span className="dashicons dashicons-desktop mr-2"></span>
+              {properties.min_screen.amount && (
+                <code className="d-inline-block mr-1 mb-2" style={{ borderRadius: 2 }}>
+                  {sprintf(
+                    __('Min: %s', 'easy-google-fonts'),
+                    `${properties.min_screen.amount}${properties.min_screen.unit}`
+                  )}
+                </code>
+              )}
+              {properties.max_screen.amount && (
+                <code className="d-inline-block mr-1 mb-2" style={{ borderRadius: 2 }}>
+                  {sprintf(
+                    __('Max: %s', 'easy-google-fonts'),
+                    `${properties.max_screen.amount}${properties.max_screen.unit}`
+                  )}
+                </code>
+              )}
+            </div>
+          )}
 
           {/* Settings */}
           <TabPanel

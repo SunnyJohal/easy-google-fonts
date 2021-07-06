@@ -98,6 +98,58 @@ function register_metadata_for_font_controls() {
 			'show_in_rest'      => true,
 		]
 	);
+
+	register_meta(
+		'post',
+		'min_screen_amount',
+		[
+			'object_subtype'    => 'tt_font_control',
+			'type'              => 'number',
+			'description'       => __( 'The minimum screen size media query amount (without units).', 'easy-google-fonts' ),
+			'single'            => true,
+			'sanitize_callback' => false,
+			'show_in_rest'      => true,
+		]
+	);
+
+	register_meta(
+		'post',
+		'min_screen_unit',
+		[
+			'object_subtype'    => 'tt_font_control',
+			'type'              => 'string',
+			'description'       => __( 'The unit type used for the minimum screen size.', 'easy-google-fonts' ),
+			'single'            => true,
+			'sanitize_callback' => 'sanitize_text_field',
+			'show_in_rest'      => true,
+		]
+	);
+
+	register_meta(
+		'post',
+		'max_screen_amount',
+		[
+			'object_subtype'    => 'tt_font_control',
+			'type'              => 'number',
+			'description'       => __( 'The minimum screen size media query amount (without units).', 'easy-google-fonts' ),
+			'single'            => true,
+			'sanitize_callback' => false,
+			'show_in_rest'      => true,
+		]
+	);
+
+	register_meta(
+		'post',
+		'max_screen_unit',
+		[
+			'object_subtype'    => 'tt_font_control',
+			'type'              => 'string',
+			'description'       => __( 'The unit type used for the minimum screen size.', 'easy-google-fonts' ),
+			'single'            => true,
+			'sanitize_callback' => 'sanitize_text_field',
+			'show_in_rest'      => true,
+		]
+	);
 }
 add_action( 'init', __NAMESPACE__ . '\\register_metadata_for_font_controls' );
 
@@ -163,6 +215,50 @@ function get_font_control_selectors( $post_id ) {
 	return empty( $selectors ) ? [] : apply_filters(
 		'egf_font_control_selectors',
 		$selectors,
+		$post_id
+	);
+}
+
+/**
+ * Get Font Control Min Screen
+ *
+ * Gets the min media query that will be
+ * controlled by the font control id.
+ *
+ * @param int $post_id ID of a 'tt_font_control' post.
+ */
+function get_font_control_min_screen( $post_id ) {
+	$amount = get_post_meta( $post_id, 'min_screen_amount', true );
+	$unit   = get_post_meta( $post_id, 'min_screen_unit', true );
+
+	return apply_filters(
+		'egf_font_control_min_screen',
+		[
+			'amount' => empty( $amount ) ? '' : $amount,
+			'unit'   => empty( $unit ) ? '' : $unit,
+		],
+		$post_id
+	);
+}
+
+/**
+ * Get Font Control Max Screen
+ *
+ * Gets the max media query that will be
+ * controlled by the font control id.
+ *
+ * @param int $post_id ID of a 'tt_font_control' post.
+ */
+function get_font_control_max_screen( $post_id ) {
+	$amount = get_post_meta( $post_id, 'max_screen_amount', true );
+	$unit   = get_post_meta( $post_id, 'max_screen_unit', true );
+
+	return apply_filters(
+		'egf_font_control_max_screen',
+		[
+			'amount' => empty( $amount ) ? '' : $amount,
+			'unit'   => empty( $unit ) ? 'px' : $unit,
+		],
 		$post_id
 	);
 }

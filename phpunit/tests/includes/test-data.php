@@ -124,5 +124,57 @@ class EGF_Test_Data extends WP_UnitTestCase {
 			$selectors
 		);
 	}
+
+	/**
+	 * Test Get Font Control Min Screen
+	 */
+	public function test_get_font_control_min_screen() {
+		update_post_meta( self::$post_id, 'min_screen_amount', 4 );
+		update_post_meta( self::$post_id, 'min_screen_unit', 'em' );
+
+		$min_query = Data\get_font_control_min_screen( self::$post_id );
+
+		$this->assertIsArray( $min_query );
+		$this->assertArrayHasKey( 'amount', $min_query );
+		$this->assertArrayHasKey( 'unit', $min_query );
+		$this->assertEquals( $min_query['amount'], 4 );
+		$this->assertEquals( $min_query['unit'], 'em' );
+
+		// Invalid value.
+		delete_post_meta( self::$post_id, 'min_screen_amount' );
+		delete_post_meta( self::$post_id, 'min_screen_unit' );
+
+		$min_query = Data\get_font_control_min_screen( self::$post_id );
+
+		$this->assertIsArray( $min_query );
+		$this->assertArrayHasKey( 'amount', $min_query );
+		$this->assertArrayHasKey( 'unit', $min_query );
+	}
+
+	/**
+	 * Test Get Font Control Max Screen
+	 */
+	public function test_get_font_control_max_screen() {
+		update_post_meta( self::$post_id, 'max_screen_amount', 4 );
+		update_post_meta( self::$post_id, 'max_screen_unit', 'em' );
+
+		$max_query = Data\get_font_control_max_screen( self::$post_id );
+
+		$this->assertIsArray( $max_query );
+		$this->assertArrayHasKey( 'amount', $max_query );
+		$this->assertArrayHasKey( 'unit', $max_query );
+		$this->assertEquals( $max_query['amount'], 4 );
+		$this->assertEquals( $max_query['unit'], 'em' );
+
+		// Invalid value.
+		delete_post_meta( self::$post_id, 'max_screen_amount' );
+		delete_post_meta( self::$post_id, 'max_screen_unit' );
+
+		$max_query = Data\get_font_control_max_screen( self::$post_id );
+
+		$this->assertIsArray( $max_query );
+		$this->assertArrayHasKey( 'amount', $max_query );
+		$this->assertArrayHasKey( 'unit', $max_query );
+	}
 }
 

@@ -123,7 +123,7 @@ add_action( 'wp_head', function() {
 // );
 	?>
 	<pre>
-		<?php print_r( get_option( 'tt_font_theme_options' ) ); ?>
+		<?php // print_r( get_option( 'tt_font_theme_options' ) ); ?>
 	</pre>
 	<?php
 });

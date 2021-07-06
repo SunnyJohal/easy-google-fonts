@@ -217,9 +217,6 @@ const setupFontControl = () => {
       if (renderAfterUpdate) {
         renderContent();
       }
-
-      // wp.customize.instance('tt_font_theme_options[egf-font-control-29][font_color]').set('#000')
-      // wp.customize.instance('tt_font_theme_options[egf-font-control-29][font_color]').previewer.refresh();
     },
 
     /**

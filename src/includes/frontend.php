@@ -16,6 +16,7 @@ namespace EGF\Frontend;
  */
 function output_preconnect_tag() {
 	?>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<?php
 }
