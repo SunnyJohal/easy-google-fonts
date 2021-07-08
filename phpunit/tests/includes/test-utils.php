@@ -62,6 +62,19 @@ class EGF_Test_Utils extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test Is Default Font
+	 */
+	public function test_is_default_font() {
+		$this->assertTrue( Utils\is_default_font( 'arial' ) );
+		$this->assertTrue( Utils\is_default_font( 'century_gothic' ) );
+		$this->assertTrue( Utils\is_default_font( 'lucida_console' ) );
+		$this->assertNotTrue( Utils\is_default_font( 'roboto' ) );
+		$this->assertNotTrue( Utils\is_default_font( 'red_hat_display' ) );
+		$this->assertNotTrue( Utils\is_default_font( '' ) );
+		$this->assertNotTrue( Utils\is_default_font( false ) );
+	}
+
+	/**
 	 * Test Get Color Palette
 	 */
 	public function test_get_theme_color_palette() {
@@ -171,5 +184,79 @@ class EGF_Test_Utils extends WP_UnitTestCase {
 				'color' => '#FFFFFF',
 			],
 		];
+	}
+
+	/**
+	 * Test Get Media Query
+	 */
+	public function test_get_media_query() {
+		$empty = Utils\get_media_query(
+			[
+				'amount' => '',
+				'unit'   => 'px',
+			],
+			[
+				'amount' => '',
+				'unit'   => 'px',
+			]
+		);
+
+		$min_only = Utils\get_media_query(
+			[
+				'amount' => '100',
+				'unit'   => 'px',
+			],
+			[
+				'amount' => '',
+				'unit'   => 'px',
+			]
+		);
+
+		$max_only = Utils\get_media_query(
+			[
+				'amount' => '',
+				'unit'   => 'px',
+			],
+			[
+				'amount' => '900',
+				'unit'   => 'px',
+			]
+		);
+
+		$min_max = Utils\get_media_query(
+			[
+				'amount' => '100',
+				'unit'   => 'px',
+			],
+			[
+				'amount' => '900',
+				'unit'   => 'px',
+			]
+		);
+
+		$this->assertIsArray( $empty );
+		$this->assertIsArray( $min_only );
+		$this->assertIsArray( $max_only );
+		$this->assertIsArray( $min_max );
+
+		$this->assertArrayHasKey( 'open', $empty );
+		$this->assertArrayHasKey( 'open', $min_only );
+		$this->assertArrayHasKey( 'open', $max_only );
+		$this->assertArrayHasKey( 'open', $min_max );
+
+		$this->assertArrayHasKey( 'close', $empty );
+		$this->assertArrayHasKey( 'close', $min_only );
+		$this->assertArrayHasKey( 'close', $max_only );
+		$this->assertArrayHasKey( 'close', $min_max );
+
+		$this->assertEquals( $empty['open'], '' );
+		$this->assertEquals( $min_only['open'], '@media (min-width: 100px) {' );
+		$this->assertEquals( $max_only['open'], '@media (max-width: 900px) {' );
+		$this->assertEquals( $min_max['open'], '@media (min-width: 100px) and (max-width: 900px) {' );
+
+		$this->assertEquals( $empty['close'], '' );
+		$this->assertEquals( $min_only['close'], '}' );
+		$this->assertEquals( $max_only['close'], '}' );
+		$this->assertEquals( $min_max['close'], '}' );
 	}
 }

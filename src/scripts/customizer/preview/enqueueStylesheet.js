@@ -6,7 +6,9 @@ export const enqueueStylesheet = props => {
   const { setting } = props;
 
   wp.customize.preview.bind(setting, ({ fontName, fontWeightStyle }) => {
-    if (!fontName) {
+    const isDefaultFont = typeof egfCustomizePreview.default_fonts[sanitizeKey(fontName)] !== 'undefined';
+
+    if (!fontName || isDefaultFont ) {
       return;
     }
 
@@ -14,10 +16,18 @@ export const enqueueStylesheet = props => {
     const isItalic = fontWeightStyle.includes('italic');
     const isRegular = fontWeight === 400;
 
-    let variants = `:${isItalic ? 'ital,' : ''},wght@${fontWeight}`;
+    let variants = '';
 
-    if (isRegular && !isItalic) {
-      variants = '';
+    if (isRegular && isItalic) {
+      variants = ':ital@1';
+    }
+
+    if (isItalic && !isRegular) {
+      variants = `:ital,wght@1,${fontWeight}`;
+    }
+
+    if ( ! isItalic && ! isRegular ) {
+      variants = `:wght@${fontWeight}`;
     }
 
     const url = `https://fonts.googleapis.com/css2?family=${fontName.replaceAll(' ', '+')}${variants}&display=swap`;

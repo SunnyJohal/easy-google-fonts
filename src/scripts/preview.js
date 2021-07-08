@@ -10,10 +10,6 @@ const fontControls = Object.values(config).filter(
 );
 
 wp.customize.bind('preview-ready', function () {
-  wp.customize.preview.bind('greeting', function (message) {
-    console.info('Pane sent message:', message);
-  });
-
   fontControls.map(fontControl => {
     const { name } = fontControl;
     const { selector, force_styles, min_screen, max_screen } = fontControl.properties;
@@ -30,6 +26,7 @@ wp.customize.bind('preview-ready', function () {
 
     enqueueStylesheet(props);
 
+    // Attach live preview listeners.
     setStyle({ ...props, subsetting: '[font_name]', css_rule: 'font-family' });
     setStyle({ ...props, subsetting: '[font_weight]', css_rule: 'font-weight' });
     setStyle({ ...props, subsetting: '[font_style]', css_rule: 'font-style' });
@@ -63,25 +60,25 @@ wp.customize.bind('preview-ready', function () {
     setStyle({
       ...props,
       subsetting: '[border_radius_top_left]',
-      css_rule: 'border-radius-top-left',
+      css_rule: 'border-top-left-radius',
       with_units: true
     });
     setStyle({
       ...props,
       subsetting: '[border_radius_top_right]',
-      css_rule: 'border-radius-top-right',
+      css_rule: 'border-top-right-radius',
       with_units: true
     });
     setStyle({
       ...props,
       subsetting: '[border_radius_bottom_left]',
-      css_rule: 'border-radius-bottom-left',
+      css_rule: 'border-bottom-left-radius',
       with_units: true
     });
     setStyle({
       ...props,
       subsetting: '[border_radius_bottom_right]',
-      css_rule: 'border-radius-bottom-right',
+      css_rule: 'border-bottom-right-radius',
       with_units: true
     });
     setStyle({ ...props, subsetting: '[display]', css_rule: 'display' });

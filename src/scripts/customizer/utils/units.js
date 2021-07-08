@@ -18,7 +18,7 @@ export const FONT_SIZE_UNITS = {
     default: '',
     a11yLabel: __('Pixels (px)', 'easy-google-fonts'),
     initial: 16,
-    min: 0,
+    min: 10,
     max: 100,
     step: 1
   },
@@ -28,7 +28,7 @@ export const FONT_SIZE_UNITS = {
     default: '',
     a11yLabel: __('Percent (%)', 'easy-google-fonts'),
     initial: 100,
-    min: 0,
+    min: 10,
     max: 300,
     step: 0.1
   },

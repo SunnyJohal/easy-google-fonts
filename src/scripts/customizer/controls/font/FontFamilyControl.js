@@ -1,4 +1,6 @@
-import Select from 'react-select';
+// import Select, { components } from 'react-select';
+import WindowedSelect from 'react-windowed-select';
+
 import { _x } from '@wordpress/i18n';
 import { createRef, useMemo } from '@wordpress/element';
 import { sanitizeFontKey } from '../../utils/sanitizeFontKey';
@@ -124,17 +126,17 @@ const FontFamilyControl = props => {
     return {};
   };
 
-  const ref = createRef();
+  const selectRef = createRef();
 
   return (
     <div className={`egf-font-family-control ${className}`}>
       <div className="components-base-control">
-        <label className="components-input-control__label" onClick={() => ref.current.focus()}>
+        <label className="components-input-control__label" onClick={() => selectRef.current.focus()}>
           {_x('Font Family', 'Font family field label for the customizer font control.', 'easy-google-fonts')}
         </label>
-        <Select
+        <WindowedSelect
           grouped
-          ref={ref}
+          ref={selectRef}
           value={getFontFromGroupedOptions(fontId)}
           options={groupedOptions}
           openMenuOnFocus={true}

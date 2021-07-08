@@ -52,6 +52,20 @@ function get_key_from_setting_id( $setting_id, $setting_base = 'tt_font_theme_op
 }
 
 /**
+ * Is Default Font
+ *
+ * @param string $font_slug Lowercase, underscore separated font slug.
+ * @return boolean true if default font, false otherwise.
+ */
+function is_default_font( $font_slug ) {
+	return \in_array(
+		$font_slug,
+		array_keys( get_default_fonts() ),
+		true
+	);
+}
+
+/**
  * Get Default Fonts
  */
 function get_default_fonts() {
@@ -79,6 +93,22 @@ function get_default_fonts() {
 
 	return apply_filters( 'egf_get_default_fonts', $fonts );
 }
+
+/**
+ * Get Fallback Fonts
+ *
+ * @param string $font_name Font family to get fallback for.
+ */
+function get_fallback_fonts( $font_name = '' ) {
+	return apply_filters(
+		'egf_get_fallback_fonts',
+		[
+			'sans-serif',
+		],
+		$font_name
+	);
+}
+
 
 /**
  * Get Theme Color Palette
@@ -138,4 +168,39 @@ function get_color_palette_fallback() {
 			'color' => '#673ab7',
 		],
 	];
+}
+
+/**
+ * Get Media Query
+ *
+ * @param array $min Assoc arr containing 'amount' and 'unit' keys.
+ * @param array $max Assoc arr containing 'amount' and 'unit' keys.
+ * @return array $media_query
+ */
+function get_media_query( $min, $max ) {
+	$media_query = [
+		'open'  => '',
+		'close' => '',
+	];
+
+	if ( empty( $min['amount'] ) && empty( $max['amount'] ) ) {
+		return $media_query;
+	}
+
+	$media_query_rules = [];
+
+	if ( ! empty( $min['amount'] ) ) {
+		$media_query_rules[] = "(min-width: {$min['amount']}{$min['unit']})";
+	}
+
+	if ( ! empty( $max['amount'] ) ) {
+		$media_query_rules[] = "(max-width: {$max['amount']}{$max['unit']})";
+	}
+
+	$rules = implode( ' and ', $media_query_rules );
+
+	$media_query['open']  = "@media {$rules} {";
+	$media_query['close'] = '}';
+
+	return $media_query;
 }
