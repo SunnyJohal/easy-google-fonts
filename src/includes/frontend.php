@@ -93,6 +93,7 @@ function enqueue_stylesheets() {
 			function( $variant ) {
 				$is_italic   = \strpos( $variant, 'italic' ) !== false;
 				$font_weight = \str_replace( 'italic', '', $variant );
+				$font_weight = empty( $font_weight ) ? '400' : $font_weight;
 
 				return $is_italic ? "1,{$font_weight}" : "0,{$font_weight}";
 			},

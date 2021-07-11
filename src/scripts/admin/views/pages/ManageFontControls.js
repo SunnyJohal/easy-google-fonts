@@ -43,13 +43,25 @@ const ManageFontControls = () => {
 
   const fontControlList = sortFontControlsByTitle(fontControls).map((id, index, arr) => {
     const isLastItem = index === arr.length - 1;
+
+    const {
+      control_selectors,
+      force_styles,
+      min_screen_amount,
+      min_screen_unit,
+      max_screen_amount,
+      max_screen_unit
+    } = fontControls[id].meta;
+
     return (
       <FontControlRow
         key={id}
-        selectors={fontControls[id].meta.control_selectors}
+        selectors={control_selectors}
         fontControlId={id}
         fontControlTitle={fontControls[id].title.rendered}
-        forceStyles={fontControls[id].meta.force_styles}
+        forceStyles={force_styles}
+        minQuery={min_screen_amount ? `${min_screen_amount}${min_screen_unit}` : ''}
+        maxQuery={max_screen_amount ? `${max_screen_amount}${max_screen_unit}` : ''}
         appendDivider={!isLastItem}
       />
     );
@@ -85,6 +97,7 @@ const ManageFontControls = () => {
           <div className="row">
             <div className="col-4">{__('Font Control', 'easy-google-fonts')}</div>
             <div className="col">{__('CSS Selectors', 'easy-google-fonts')}</div>
+            <div className="col">{__('Media Query Settings', 'easy-google-fonts')}</div>
             <div className="col">{__('Force Styles (Optional)', 'easy-google-fonts')}</div>
           </div>
         </CardHeader>

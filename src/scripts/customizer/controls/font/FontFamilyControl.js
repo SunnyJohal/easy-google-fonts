@@ -1,7 +1,7 @@
 // import Select, { components } from 'react-select';
 import WindowedSelect from 'react-windowed-select';
 
-import { _x } from '@wordpress/i18n';
+import { _x, __ } from '@wordpress/i18n';
 import { createRef, useMemo } from '@wordpress/element';
 import { sanitizeFontKey } from '../../utils/sanitizeFontKey';
 

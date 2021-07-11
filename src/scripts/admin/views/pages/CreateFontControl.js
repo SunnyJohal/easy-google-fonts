@@ -1,5 +1,5 @@
 // External dependencies.
-import { Prompt, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useBeforeunload } from 'react-beforeunload';
 import { useToasts } from 'react-toast-notifications';
 
@@ -18,11 +18,17 @@ import {
   TextControl,
   TextareaControl,
   CheckboxControl,
-  Notice
+  Notice,
+  Panel,
+  PanelBody,
+  PanelRow,
+  RangeControl,
+  __experimentalUnitControl as UnitControl
 } from '@wordpress/components';
 
 // Internal dependencies.
 import { STORE_KEY } from '../../store';
+import { parseUnit, MIN_SCREEN_UNITS, MAX_SCREEN_UNITS } from '../../utils/units';
 import getScreenLink from '../../utils/getScreenLink';
 import CreateFontControlLoader from '../components/loaders/CreateFontControlLoader';
 
@@ -33,6 +39,10 @@ const CreateFontControl = props => {
   const [fontControlNameError, setFontControlNameError] = useState(false);
   const [description, setDescription] = useState('');
   const [forceStyles, setForceStyles] = useState(false);
+  const [minAmount, setMinAmount] = useState('');
+  const [minUnit, setMinUnit] = useState('px');
+  const [maxAmount, setMaxAmount] = useState('');
+  const [maxUnit, setMaxUnit] = useState('px');
   const [selectors, setSelectors] = useState([]);
   const hasSelectors = selectors.length > 0;
 
@@ -61,7 +71,16 @@ const CreateFontControl = props => {
 
     try {
       setIsSaving(true);
-      const newFontControl = await createFontControl({ name: fontControlName, description, selectors, forceStyles });
+      const newFontControl = await createFontControl({
+        name: fontControlName,
+        description,
+        selectors,
+        forceStyles,
+        minAmount,
+        minUnit,
+        maxAmount,
+        maxUnit
+      });
       resetFontControl();
       props.history.push(`${getScreenLink('edit', { fontControl: newFontControl.payload.fontControl.id })}`);
       addToast(
@@ -87,10 +106,21 @@ const CreateFontControl = props => {
     setSelectors([]);
     setForceStyles(false);
     setDescription('');
+    setMinAmount('');
+    setMinUnit('px');
+    setMaxAmount('');
+    setMaxUnit('px');
   };
 
   const changesMade = () => {
-    const changesMade = [fontControlName !== '', description !== '', forceStyles !== false, selectors.length !== 0];
+    const changesMade = [
+      fontControlName !== '',
+      description !== '',
+      forceStyles !== false,
+      minAmount !== '',
+      maxAmount !== '',
+      selectors.length !== 0
+    ];
     return changesMade.some(hasChanged => hasChanged);
   };
 
@@ -102,6 +132,18 @@ const CreateFontControl = props => {
       );
     }
   });
+
+  let minUnitSelected = minUnit || 'px';
+
+  if (minUnit === '%') {
+    minUnitSelected = 'percent';
+  }
+
+  let maxUnitSelected = maxUnit || 'px';
+
+  if (maxUnit === '%') {
+    maxUnitSelected = 'percent';
+  }
 
   return dataLoaded ? (
     <div>
@@ -165,29 +207,142 @@ const CreateFontControl = props => {
 
                 <CardDivider className="my-4" />
 
-                <h3>{__('Font Control Properties', 'easy-google-fonts')}</h3>
+                <div className="row">
+                  <div className="col-md-6">
+                    <h3>{__('Font Control Properties', 'easy-google-fonts')}</h3>
 
-                <CheckboxControl
-                  className="egf-settings__force-style egf-font-control-property"
-                  checked={forceStyles}
-                  label={__('Force Styles (Optional)', 'easy-google-fonts')}
-                  help={__(
-                    'This will enable the important rule for any of the CSS styles generated for the selectors defined above. It is used to add more importance to a property/value than normal.',
-                    'easy-google-fonts'
-                  )}
-                  onChange={forceStyles => setForceStyles(forceStyles)}
-                />
+                    <CheckboxControl
+                      className="egf-settings__force-style egf-font-control-property"
+                      checked={forceStyles}
+                      label={__('Force Styles (Optional)', 'easy-google-fonts')}
+                      help={__(
+                        'This will enable the important rule for any of the CSS styles generated for the selectors defined above. It is used to add more importance to a property/value than normal.',
+                        'easy-google-fonts'
+                      )}
+                      onChange={forceStyles => setForceStyles(forceStyles)}
+                    />
 
-                <TextareaControl
-                  label={__('Customizer Description', 'easy-google-fonts')}
-                  className="egf-settings__description egf-font-control-property"
-                  help={__(
-                    'Description of the font control, displayed in the customizer interface.',
-                    'easy-google-fonts'
-                  )}
-                  value={description}
-                  onChange={description => setDescription(description)}
-                />
+                    <TextareaControl
+                      label={__('Customizer Description', 'easy-google-fonts')}
+                      className="egf-settings__description egf-font-control-property"
+                      help={__(
+                        'Description of the font control, displayed in the customizer interface.',
+                        'easy-google-fonts'
+                      )}
+                      value={description}
+                      onChange={description => setDescription(description)}
+                    />
+                  </div>
+
+                  <div className="col-md-6">
+                    <h3>{__('Media Query Settings', 'easy-google-fonts')}</h3>
+                    <p>
+                      {__(
+                        'By default, any styles created by this font control will apply to all screen sizes for your theme. If you only want to apply styles to certain screen sizes you can adjust the settings below.',
+                        'easy-google-fonts'
+                      )}
+                    </p>
+
+                    <Panel className="my-4">
+                      <PanelBody title={__('Min Screen', 'easy-google-fonts')} initialOpen={false}>
+                        <p className="description">
+                          {__('The minimum width of the browser window.', 'easy-google-fonts')}
+                        </p>
+                        <RangeControl
+                          value={minAmount}
+                          onChange={setMinAmount}
+                          initialPosition={minAmount}
+                          min={MIN_SCREEN_UNITS[minUnitSelected].min}
+                          max={MIN_SCREEN_UNITS[minUnitSelected].max}
+                          step={MIN_SCREEN_UNITS[minUnitSelected].step}
+                          renderTooltipContent={() => `${minAmount}${minUnit}`}
+                          withInputField={false}
+                        />
+                        <PanelRow className="mt-2">
+                          <UnitControl
+                            min={MIN_SCREEN_UNITS[minUnitSelected].min}
+                            max={MIN_SCREEN_UNITS[minUnitSelected].max}
+                            step={MIN_SCREEN_UNITS[minUnitSelected].step}
+                            onChange={value => {
+                              const [amount, unit] = parseUnit(value, Object.values(MIN_SCREEN_UNITS));
+                              if (amount > 0) {
+                                setMinAmount(amount);
+                                setMinUnit(unit);
+                              }
+                            }}
+                            onUnitChange={(unit = 'px') => {
+                              if (unit === '%') {
+                                unit = 'percent';
+                              }
+
+                              setMinAmount(MIN_SCREEN_UNITS[minUnitSelected].initial);
+                              setMinUnit(unit);
+                            }}
+                            value={`${minAmount}${minUnit}`}
+                            units={Object.values(MIN_SCREEN_UNITS)}
+                          />
+                          <Button
+                            isSecondary
+                            onClick={() => {
+                              setMinAmount('');
+                              setMinUnit('px');
+                            }}
+                          >
+                            {__('Reset', 'easy-google-fonts')}
+                          </Button>
+                        </PanelRow>
+                      </PanelBody>
+                      <PanelBody title={__('Max Screen', 'easy-google-fonts')} initialOpen={false}>
+                        <p className="description">
+                          {__('The maximum width of the browser window.', 'easy-google-fonts')}
+                        </p>
+                        <RangeControl
+                          value={maxAmount}
+                          onChange={setMaxAmount}
+                          initialPosition={maxAmount}
+                          min={MAX_SCREEN_UNITS[maxUnitSelected].min}
+                          max={MAX_SCREEN_UNITS[maxUnitSelected].max}
+                          step={MAX_SCREEN_UNITS[maxUnitSelected].step}
+                          renderTooltipContent={() => `${maxAmount}${maxUnit}`}
+                          withInputField={false}
+                        />
+                        <PanelRow className="mt-2">
+                          <UnitControl
+                            min={MAX_SCREEN_UNITS[maxUnitSelected].min}
+                            max={MAX_SCREEN_UNITS[maxUnitSelected].max}
+                            step={MAX_SCREEN_UNITS[maxUnitSelected].step}
+                            onChange={value => {
+                              const [amount, unit] = parseUnit(value, Object.values(MAX_SCREEN_UNITS));
+                              if (amount > 0) {
+                                setMaxAmount(amount);
+                                setMaxUnit(unit);
+                              }
+                            }}
+                            onUnitChange={(unit = 'px') => {
+                              if (unit === '%') {
+                                unit = 'percent';
+                              }
+
+                              setMaxAmount(MAX_SCREEN_UNITS[maxUnitSelected].initial);
+                              setMaxUnit(unit);
+                            }}
+                            value={`${maxAmount}${maxUnit}`}
+                            units={Object.values(MAX_SCREEN_UNITS)}
+                          />
+                          <Button
+                            isSecondary
+                            onClick={() => {
+                              setMaxAmount('');
+                              setMaxUnit('px');
+                            }}
+                          >
+                            {__('Reset', 'easy-google-fonts')}
+                          </Button>
+                        </PanelRow>
+                      </PanelBody>
+                    </Panel>
+                  </div>
+                </div>
               </CardBody>
 
               {/* Footer Actions */}

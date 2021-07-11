@@ -20,8 +20,19 @@ export const hydrateFontControls = fontControls => {
  * @param {array} selectors CSS selectors.
  * @param {boolean} forceStyles Force the !important css rule.
  * @param {string} description Description used in the customizer interface.
+ * @param {number} minAmount Min screen media query amount.
+ * @param {string} minUnit Min screen media query unit.
  */
-export function* createFontControl({ name, selectors, forceStyles, description }) {
+export function* createFontControl({
+  name,
+  selectors,
+  forceStyles,
+  description,
+  minAmount,
+  minUnit,
+  maxAmount,
+  maxUnit
+}) {
   const path = '/wp/v2/easy-google-fonts';
   const fontControl = yield apiFetch({
     path,
@@ -32,7 +43,11 @@ export function* createFontControl({ name, selectors, forceStyles, description }
       meta: {
         control_selectors: selectors,
         control_description: description,
-        force_styles: forceStyles
+        force_styles: forceStyles,
+        min_screen_amount: minAmount,
+        min_screen_unit: minUnit,
+        max_screen_amount: maxAmount,
+        max_screen_unit: maxUnit
       }
     }
   });
@@ -54,7 +69,17 @@ export function* createFontControl({ name, selectors, forceStyles, description }
  * @param {boolean} forceStyles Force the !important css rule.
  * @param {string} description Description used in the customizer interface.
  */
-export function* updateFontControl({ id, name, selectors, forceStyles, description }) {
+export function* updateFontControl({
+  id,
+  name,
+  selectors,
+  forceStyles,
+  description,
+  minAmount,
+  minUnit,
+  maxAmount,
+  maxUnit
+}) {
   const path = `/wp/v2/easy-google-fonts/${id}`;
   const fontControl = yield apiFetch({
     path,
@@ -64,7 +89,11 @@ export function* updateFontControl({ id, name, selectors, forceStyles, descripti
       meta: {
         control_selectors: selectors,
         control_description: description,
-        force_styles: forceStyles
+        force_styles: forceStyles,
+        min_screen_amount: minAmount,
+        min_screen_unit: minUnit,
+        max_screen_amount: maxAmount,
+        max_screen_unit: maxUnit
       }
     }
   });

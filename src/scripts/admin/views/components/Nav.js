@@ -17,7 +17,10 @@ const Nav = () => {
     <>
       <h1 className="wp-heading-inline">{__('Font Controls', 'easy-google-fonts')}</h1>
 
-      <a className="page-title-action hide-if-no-customize ml-2" href={`${easy_google_fonts.admin_url}customize.php`}>
+      <a
+        className="page-title-action hide-if-no-customize ml-2"
+        href={`${easy_google_fonts.admin_url}customize.php?autofocus%5Bpanel%5D=egf_typography_panel&return=%2Fwp-admin%2Foptions-general.php?page=easy-google-fonts`}
+      >
         {__('Manage with Live Preview', 'easy-google-fonts')}
       </a>
 

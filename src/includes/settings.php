@@ -119,6 +119,14 @@ function get_custom_settings_config() {
 				'properties'  => [
 					'selector'     => \implode( ', ', Data\get_font_control_selectors( $font_control_id ) ),
 					'force_styles' => Data\get_font_control_force_styles( $font_control_id ),
+					'min_screen'   => [
+						'amount' => Data\get_font_control_min_screen( $font_control_id )['amount'],
+						'unit'   => Data\get_font_control_min_screen( $font_control_id )['unit'],
+					],
+					'max_screen'   => [
+						'amount' => Data\get_font_control_max_screen( $font_control_id )['amount'],
+						'unit'   => Data\get_font_control_max_screen( $font_control_id )['unit'],
+					],
 				],
 			];
 
@@ -163,12 +171,12 @@ function parse_config_args( $config_arr ) {
 		],
 		'default'           => [
 			'subset'                     => 'latin,all',
-			'font_id'                    => 'roboto',
-			'font_name'                  => 'Roboto',
-			'font_color'                 => 'hsla(328, 100%, 44%, 0.77)',
-			'font_weight'                => '500',
+			'font_id'                    => '',
+			'font_name'                  => '',
+			'font_color'                 => '',
+			'font_weight'                => '',
 			'font_style'                 => '',
-			'font_weight_style'          => '500',
+			'font_weight_style'          => '',
 			'background_color'           => '',
 			'stylesheet_url'             => '',
 			'text_decoration'            => '',

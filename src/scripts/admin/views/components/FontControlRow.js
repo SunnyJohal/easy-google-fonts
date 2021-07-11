@@ -13,11 +13,13 @@ import { STORE_KEY } from '../../store';
 import getScreenLink from '../../utils/getScreenLink';
 
 const FontControlRow = props => {
-  const { appendDivider, fontControlId, selectors, fontControlTitle, forceStyles } = props;
+  const { appendDivider, fontControlId, selectors, fontControlTitle, forceStyles, minQuery, maxQuery } = props;
   const [isSaving, setIsSaving] = useState(false);
 
   const { addToast } = useToasts();
   const { deleteFontControl, updateFontControlForceStyles } = useDispatch(STORE_KEY);
+
+  const isMediaQueryControl = minQuery || maxQuery;
 
   return (
     <div className="egf-manage-font-controls__font-control">
@@ -68,6 +70,32 @@ const FontControlRow = props => {
           {selectors.map((selector, i) => {
             return <code key={i}>{selector}</code>;
           })}
+        </div>
+
+        {/* Media Query */}
+        <div className="col">
+          {isMediaQueryControl ? (
+            <div className="m-0">
+              <span className="dashicons dashicons-desktop mr-2"></span>
+              {minQuery && (
+                <code className="d-inline-block mr-1 mb-2" style={{ borderRadius: 2 }}>
+                  {sprintf(__('Min: %s', 'easy-google-fonts'), minQuery)}
+                </code>
+              )}
+              {maxQuery && (
+                <code className="d-inline-block mr-1 mb-2" style={{ borderRadius: 2 }}>
+                  {sprintf(__('Max: %s', 'easy-google-fonts'), maxQuery)}
+                </code>
+              )}
+            </div>
+          ) : (
+            <div className="m-0">
+              <span className="dashicons dashicons-desktop mr-2"></span>
+              <code className="d-inline-block mr-1 mb-2" style={{ borderRadius: 2 }}>
+                {__('All Screens')}
+              </code>
+            </div>
+          )}
         </div>
 
         {/* Font control force styles */}
