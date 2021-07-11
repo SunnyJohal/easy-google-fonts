@@ -100,11 +100,13 @@ e.g.
 == Changelog ==
 
 = 2.0.0
-* Complete plugin rewrite.
+* Complete plugin codebase rewrite.
+* Font controls/styles now support media queries.
 * New Admin UI.
 * New Customizer UI (now uses react js components).
-* Live customizer preview has been rewritten in react to be more performant.
+* Live customizer preview has been rewritten to be more performant (by handling subsettings for each font control individually).
 * Frontend query for font controls has been optimised for performance.
+* Removed unnessary WordPress filters.
 
 = 1.4.4 - WordPress 5.0 compatibility update =
 * Updated webfonts.json with the latest google fonts.

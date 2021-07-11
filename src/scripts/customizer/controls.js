@@ -12,10 +12,6 @@ export const registerControls = () => {
   customize.bind('ready', () => {
     registerFontControls();
   });
-
-  customize.bind('preview-ready', () => {
-    console.log('possible to send to the previewer here?');
-  });
 };
 
 /**
