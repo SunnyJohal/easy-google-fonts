@@ -44,9 +44,9 @@ export function* createFontControl({
         control_selectors: selectors,
         control_description: description,
         force_styles: forceStyles,
-        min_screen_amount: minAmount,
+        min_screen_amount: minAmount || 0,
         min_screen_unit: minUnit,
-        max_screen_amount: maxAmount,
+        max_screen_amount: maxAmount || 0,
         max_screen_unit: maxUnit
       }
     }
@@ -90,9 +90,9 @@ export function* updateFontControl({
         control_selectors: selectors,
         control_description: description,
         force_styles: forceStyles,
-        min_screen_amount: minAmount,
+        min_screen_amount: minAmount || 0,
         min_screen_unit: minUnit,
-        max_screen_amount: maxAmount,
+        max_screen_amount: maxAmount || 0,
         max_screen_unit: maxUnit
       }
     }

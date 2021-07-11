@@ -39,9 +39,9 @@ const CreateFontControl = props => {
   const [fontControlNameError, setFontControlNameError] = useState(false);
   const [description, setDescription] = useState('');
   const [forceStyles, setForceStyles] = useState(false);
-  const [minAmount, setMinAmount] = useState('');
+  const [minAmount, setMinAmount] = useState(0);
   const [minUnit, setMinUnit] = useState('px');
-  const [maxAmount, setMaxAmount] = useState('');
+  const [maxAmount, setMaxAmount] = useState(0);
   const [maxUnit, setMaxUnit] = useState('px');
   const [selectors, setSelectors] = useState([]);
   const hasSelectors = selectors.length > 0;
@@ -106,9 +106,9 @@ const CreateFontControl = props => {
     setSelectors([]);
     setForceStyles(false);
     setDescription('');
-    setMinAmount('');
+    setMinAmount(0);
     setMinUnit('px');
-    setMaxAmount('');
+    setMaxAmount(0);
     setMaxUnit('px');
   };
 

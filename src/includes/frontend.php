@@ -163,7 +163,7 @@ function output_frontend_css() {
 				$css .= 'font_name' === $prop ? ', ' . implode( ', ', Utils\get_fallback_fonts( $setting_props[ $prop ] ) ) : '';
 				$css .= $force_styles ? '!important;' : ';';
 			}
-			$css .= '}';
+			$css .= '} ';
 			$css .= $media_query['close'];
 
 			echo $css; // @codingStandardsIgnoreLine
@@ -216,7 +216,7 @@ function output_frontend_preview_css() {
 			$css .= $has_units ? $setting_prop['amount'] . $setting_prop['unit'] : $setting_prop;
 			$css .= 'font_name' === $prop ? ', ' . implode( ', ', Utils\get_fallback_fonts( $setting_props[ $prop ] ) ) : '';
 			$css .= $force_styles ? '!important;' : ';';
-			$css .= '}';
+			$css .= '} ';
 			$css .= $media_query['close'];
 			$css .= '</style>';
 		}

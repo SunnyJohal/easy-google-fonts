@@ -113,17 +113,3 @@ register_deactivation_hook(
 		flush_rewrite_rules();
 	}
 );
-
-add_action( 'wp_head', function() {
-// 	update_option(
-// 	'tt_font_theme_options',
-// 	[
-// 		'tt_default_body' => [ 'subset' => 'greeksss' ],
-// 	]
-// );
-	?>
-	<pre>
-		<?php // print_r( get_option( 'tt_font_theme_options' ) ); ?>
-	</pre>
-	<?php
-});
