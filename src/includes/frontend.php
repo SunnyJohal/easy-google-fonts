@@ -47,16 +47,36 @@ function enqueue_stylesheets() {
 			$font_families[ $font_family ] = [];
 		}
 
-		$font_families[ $font_family ][] = empty( $setting['font_weight_style'] ) ? 400 : $setting['font_weight_style'];
+		$is_regular_font_weight = empty( $setting['font_weight_style'] ) || 'regular' === $setting['font_weight_style'];
+
+		$font_families[ $font_family ][] = $is_regular_font_weight ? 400 : $setting['font_weight_style'];
 	}
 
 	$request_url = 'https://fonts.googleapis.com/css2?display=swap';
 
 	foreach ( $font_families as $family => $variants ) {
+		// Sort variant tuples.
+		usort(
+			$variants,
+			function( $a, $b ) {
+				$a = \str_replace( 'italic', '', $a );
+				$b = \str_replace( 'italic', '', $b );
+
+				$font_weight_a = empty( $a ) ? '400' : $a;
+				$font_weight_b = empty( $b ) ? '400' : $b;
+
+				if ( $font_weight_a === $font_weight_b ) {
+					return 0;
+				}
+
+				return ( $font_weight_a < $font_weight_b ) ? -1 : 1;
+			}
+		);
+
+		// Determine variants to load.
 		$has_italic               = false;
 		$load_additional_variants = false;
 
-		// Determine variants to load.
 		foreach ( $variants as $variant ) {
 			if ( 400 !== $variant && 'regular' !== $variant ) {
 				$load_additional_variants = true;

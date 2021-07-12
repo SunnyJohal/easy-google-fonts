@@ -5,7 +5,7 @@ Tags: WordPress Google Fonts Plugin, Google Webfonts, Google Fonts WordPress, Ty
 Requires PHP: 7.0.0
 Requires at least: 5.7.2
 Tested up to: 5.7.2
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,8 @@ e.g.
 10. Plugin Settings: If you enter a valid google fonts api key then this plugin will update itself with the latest fonts automatically.
 
 == Changelog ==
+= 2.0.1
+* Bugfix: Google stylesheet url requires font weights to be sorted in ascending order.
 
 = 2.0.0
 * Complete plugin codebase rewrite.
@@ -207,8 +209,7 @@ For a quick video demo please view the [vimeo screencast](https://vimeo.com/7787
 
 == Credits and Donation ==
 
-* [Tag-it jQuery plugin](http://aehlke.github.io/tag-it/) by Alex Ehlke. (Used in the admin settings page)
-* Chip Bennet's Oenology Theme. Alot of inspiration for best practices and WordPress Customizer integration taken from this theme.
-* Otherwise, this plugin has been entirely written from scratch in Sublime Text by Titanium Themes with some code taken solely from WordPress core.
+* [WordPress Components](https://developer.wordpress.org/block-editor/reference-guides/components/). (Used in the admin settings page)
+* Otherwise, this plugin has been entirely written from scratch by Titanium Themes.
 
 If you have found this plugin useful please [donate here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=28M8NWPHVQNYU)
