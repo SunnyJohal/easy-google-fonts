@@ -59,6 +59,9 @@ function enqueue_stylesheets() {
 		usort(
 			$variants,
 			function( $a, $b ) {
+				$a_is_italic = \strpos( $a, 'italic' ) !== false;
+				$b_is_italic = \strpos( $b, 'italic' ) !== false;
+
 				$a = \str_replace( 'italic', '', $a );
 				$b = \str_replace( 'italic', '', $b );
 
@@ -67,6 +70,14 @@ function enqueue_stylesheets() {
 
 				if ( $font_weight_a === $font_weight_b ) {
 					return 0;
+				}
+
+				if ( $a_is_italic && ! $b_is_italic ) {
+					return 1;
+				}
+
+				if ( ! $a_is_italic && $b_is_italic ) {
+					return -1;
 				}
 
 				return ( $font_weight_a < $font_weight_b ) ? -1 : 1;
