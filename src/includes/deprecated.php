@@ -14,6 +14,30 @@ namespace EGF\Deprecated;
 use EGF\Settings as Settings;
 
 /**
+ * Preserve Legacy Font Control IDs
+ *
+ * Handle legacy font control ids, new ids will be
+ * generated dynamically from the post id.
+ *
+ * @param string $font_control_id_id Generated font control id.
+ * @param int    $post_id ID of a 'tt_font_control' post.
+ */
+add_filter(
+	'egf_font_control_id',
+	function( $font_control_id, $post_id ) {
+		$old_font_control_id = get_post_meta( $post_id, 'control_id', true );
+
+		if ( ! empty( $old_font_control_id ) ) {
+			return $old_font_control_id;
+		}
+
+		return $font_control_id;
+	},
+	10,
+	2
+);
+
+/**
  * Add Default Weight Variants
  */
 add_filter(
@@ -65,5 +89,3 @@ add_filter(
 	10,
 	1
 );
-
-
