@@ -5,7 +5,7 @@ Tags: WordPress Google Fonts Plugin, Google Webfonts, Google Fonts WordPress, Ty
 Requires PHP: 7.0.0
 Requires at least: 5.7.2
 Tested up to: 5.7.2
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ e.g.
 10. Plugin Settings: If you enter a valid google fonts api key then this plugin will update itself with the latest fonts automatically.
 
 == Changelog ==
+= 2.0.2
+* Backwards Compatibilty: Added backwards compatibility for old theme integrations.
+
 = 2.0.1
 * Bugfix: Google stylesheet url requires font weights to be sorted in ascending order.
 
