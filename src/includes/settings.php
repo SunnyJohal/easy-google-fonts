@@ -80,7 +80,10 @@ function get_settings_config() {
 
 	$config = array_map(
 		__NAMESPACE__ . '\\parse_config_args',
-		wp_parse_args( $default_config, get_custom_settings_config() )
+		wp_parse_args(
+			apply_filters( 'egf_get_config_parameters', $default_config ),
+			get_custom_settings_config()
+		)
 	);
 
 	return apply_filters( 'egf_get_settings_config', $config );

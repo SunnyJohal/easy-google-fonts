@@ -11,6 +11,8 @@
 
 namespace EGF\Deprecated;
 
+use EGF\Settings as Settings;
+
 /**
  * Add Default Weight Variants
  */
@@ -27,3 +29,41 @@ add_filter(
 	100,
 	1
 );
+
+/**
+ * Config Parameters Backwards Compatibility
+ */
+add_filter(
+	'egf_get_config_parameters',
+	function( $default_config ) {
+		return apply_filters( 'tt_font_get_option_parameters', $default_config );
+	},
+	10,
+	1
+);
+
+/**
+ * Get Sections Backwards Compatibility
+ */
+add_filter(
+	'egf_customizer_get_sections',
+	function( $sections ) {
+		return apply_filters( 'tt_font_get_settings_page_tabs', $sections );
+	},
+	10,
+	1
+);
+
+/**
+ * Get Panels Backwards Compatibility
+ */
+add_filter(
+	'egf_customizer_get_panels',
+	function( $panels ) {
+		return apply_filters( 'tt_font_get_panels', $panels );
+	},
+	10,
+	1
+);
+
+
