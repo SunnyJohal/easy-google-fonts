@@ -52,7 +52,8 @@ function enqueue_stylesheets() {
 		$font_families[ $font_family ][] = $is_regular_font_weight ? 400 : $setting['font_weight_style'];
 	}
 
-	$request_url = 'https://fonts.googleapis.com/css2?display=swap';
+	$base_url    = 'https://fonts.googleapis.com/css2?display=swap';
+	$request_url = $base_url;
 
 	foreach ( $font_families as $family => $variants ) {
 		// Sort variant tuples.
@@ -68,16 +69,16 @@ function enqueue_stylesheets() {
 				$font_weight_a = empty( $a ) ? '400' : $a;
 				$font_weight_b = empty( $b ) ? '400' : $b;
 
-				if ( $font_weight_a === $font_weight_b ) {
-					return 0;
-				}
-
 				if ( $a_is_italic && ! $b_is_italic ) {
 					return 1;
 				}
 
 				if ( ! $a_is_italic && $b_is_italic ) {
 					return -1;
+				}
+
+				if ( $font_weight_a === $font_weight_b ) {
+					return 0;
 				}
 
 				return ( $font_weight_a < $font_weight_b ) ? -1 : 1;
@@ -136,9 +137,13 @@ function enqueue_stylesheets() {
 		}
 	}
 
+	if ( $request_url === $base_url ) {
+		return;
+	}
+
 	echo "<link href='{$request_url}' rel='stylesheet'>"; // @codingStandardsIgnoreLine
 }
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_stylesheets' );
+add_action( 'wp_head', __NAMESPACE__ . '\\enqueue_stylesheets' );
 
 /**
  * Output Inline Styles In <head>

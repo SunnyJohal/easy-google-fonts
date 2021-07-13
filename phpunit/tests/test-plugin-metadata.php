@@ -64,7 +64,7 @@ class EGF_Test_Plugin_Metadata extends WP_UnitTestCase {
 		return [
 			[ 'Name', 'Easy Google Fonts' ],
 			[ 'Description', 'A simple and easy way to add google fonts to your WordPress theme.' ],
-			[ 'Version', '2.0.2' ],
+			[ 'Version', '2.0.3' ],
 			[ 'Author', 'Titanium Themes' ],
 			[ 'AuthorURI', 'https://titaniumthemes.com' ],
 			[ 'PluginURI', 'https://wordpress.org/plugins/easy-google-fonts/' ],

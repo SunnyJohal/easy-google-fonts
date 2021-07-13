@@ -113,7 +113,7 @@ const setupFontControl = () => {
       return {
         name,
         type,
-        label: title,
+        label: title.replace('&amp;', '&'),
         description,
         section,
         capability: 'edit_theme_options',

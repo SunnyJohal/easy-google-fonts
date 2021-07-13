@@ -40,8 +40,8 @@ class EGF_Test_Frontend extends WP_UnitTestCase {
 		// ];
 
 		$variants = [
-			'400',
 			'italic',
+			'400',
 			'700',
 		];
 
@@ -57,16 +57,16 @@ class EGF_Test_Frontend extends WP_UnitTestCase {
 				$font_weight_a = empty( $a ) ? '400' : $a;
 				$font_weight_b = empty( $b ) ? '400' : $b;
 
-				if ( $font_weight_a === $font_weight_b ) {
-					return 0;
-				}
-
 				if ( $a_is_italic && ! $b_is_italic ) {
 					return 1;
 				}
 
 				if ( ! $a_is_italic && $b_is_italic ) {
 					return -1;
+				}
+
+				if ( $font_weight_a === $font_weight_b ) {
+					return 0;
 				}
 
 				return ( $font_weight_a < $font_weight_b ) ? -1 : 1;

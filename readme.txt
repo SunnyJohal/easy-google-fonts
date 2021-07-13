@@ -5,7 +5,7 @@ Tags: WordPress Google Fonts Plugin, Google Webfonts, Google Fonts WordPress, Ty
 Requires PHP: 7.0.0
 Requires at least: 5.7.2
 Tested up to: 5.7.2
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,17 +59,13 @@ It also allows you to create custom theme specific font controls in the admin se
 **Please note:** We are currently working on producing in-depth documentation for theme developers which will be available shortly. 
 
 * **Cross Browser and Backwards Browser Compatible** (Tested in all major browsers).
-* Already tested and works in WordPress 4.1.
 * **Uses Action Hooks and Filters:** For advanced integration.
 * **Seamless WordPress Integration:**  Live preview is integrated into the WordPress Customizer and the settings page follows core WordPress design guidelines.
 * Uses the WordPress **Options API** to store and retrieve options.
 * **Highly Secure:** Checks user permissions, uses nonces and the WordPress Security API.
-* Uses the Screen Options API and Ajax to allow you to easily show/hide metaboxes on the admin page.
-* **Rock solid, Robust Code:** handcoded, tested and beautifully formatted in Sublime Text.
-* **Uses WP Ajax** for an enhanced admin experience.
-* Fully Commented Source Code.
+* **Uses the REST API** for an enhanced admin experience.
 * Strong Usability Testing.
-* **Enhanced Performance:** Will only load a particular google font (using wp_enqueue_script()) once and uses the **Transients API** in the admin area.
+* **Enhanced Performance:** Will only make a single request to google to fetch all fonts.
 
 
 == Installation ==
@@ -98,13 +94,17 @@ e.g.
 10. Plugin Settings: If you enter a valid google fonts api key then this plugin will update itself with the latest fonts automatically.
 
 == Changelog ==
-= 2.0.2
+= 2.0.3 Bugfix and Backwards Compatibilty =
+* Bugfix: Tuples needed to be sorted in the google fonts url when the stylesheet url was being generated.
+* Added complete support for the old tabs based api.
+
+= 2.0.2 =
 * Backwards Compatibilty: Added backwards compatibility for old theme integrations.
 
-= 2.0.1
+= 2.0.1 =
 * Bugfix: Google stylesheet url requires font weights to be sorted in ascending order.
 
-= 2.0.0
+= 2.0.0 =
 * Complete plugin codebase rewrite.
 * Font controls/styles now support media queries.
 * New Admin UI.

@@ -20,7 +20,7 @@ export const registerSections = () => {
       // Register a new section.
       const section = new wp.customize.Section(sectionId, {
         customizeAction: customize_action,
-        title,
+        title: title.replace('&amp;', '&'),
         description,
         panel
       });

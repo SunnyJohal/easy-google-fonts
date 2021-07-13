@@ -60,7 +60,15 @@ add_filter(
 add_filter(
 	'egf_get_config_parameters',
 	function( $default_config ) {
-		return apply_filters( 'tt_font_get_option_parameters', $default_config );
+		$default_config = apply_filters( 'tt_font_get_option_parameters', $default_config );
+
+		foreach ( $default_config as $name => $props ) {
+			if ( ! empty( $props['tab'] ) ) {
+				$default_config[ $name ]['section'] = $props['tab'];
+			}
+		}
+
+		return $default_config;
 	},
 	10,
 	1
@@ -72,7 +80,15 @@ add_filter(
 add_filter(
 	'egf_customizer_get_sections',
 	function( $sections ) {
-		return apply_filters( 'tt_font_get_settings_page_tabs', $sections );
+		$sections = apply_filters( 'tt_font_get_settings_page_tabs', $sections );
+
+		foreach ( $sections as $name => $props ) {
+			if ( empty( $props['customize_action'] ) ) {
+				$sections[ $name ]['customize_action'] = __( 'You are customizing', 'easy-google-fonts' );
+			}
+		}
+
+		return $sections;
 	},
 	10,
 	1
