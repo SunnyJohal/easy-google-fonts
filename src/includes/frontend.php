@@ -24,6 +24,7 @@ function output_preconnect_tag() {
 	<?php
 }
 add_action( 'wp_head', __NAMESPACE__ . '\\output_preconnect_tag', 10 );
+add_action( 'admin_head', __NAMESPACE__ . '\\output_preconnect_tag', 10 );
 
 
 /**
@@ -144,6 +145,7 @@ function enqueue_stylesheets() {
 	echo "<link href='{$request_url}' rel='stylesheet'>"; // @codingStandardsIgnoreLine
 }
 add_action( 'wp_head', __NAMESPACE__ . '\\enqueue_stylesheets' );
+add_action( 'admin_head', __NAMESPACE__ . '\\enqueue_stylesheets' );
 
 /**
  * Output Inline Styles In <head>

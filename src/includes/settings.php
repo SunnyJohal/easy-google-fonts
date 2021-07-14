@@ -274,7 +274,7 @@ function parse_config_args( $config_arr ) {
 	}
 
 	if ( isset( $config_arr['default'] ) ) {
-		$config_arr['default'] = wp_parse_args( $config_arr['default'], $defaults['properties'] );
+		$config_arr['default'] = wp_parse_args( $config_arr['default'], $defaults['default'] );
 	}
 
 	return wp_parse_args( $config_arr, $defaults );
