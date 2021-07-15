@@ -1,6 +1,6 @@
 {
   "name": "easy-google-fonts",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "Adds google fonts to any WordPress theme without coding and integrates with the customizer for a realtime live preview.",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "destroy": "wp-env destroy",
     "wp-env": "wp-env",
     "prebundle": "npm run build",
-    "bundle": "dir-archiver --src . --dest ../easy-google-fonts-trunk.zip --exclude node_modules phpunit test vendor .DS_Store .editorconfig .gitignore .prettierrc .travis.yml .wp-env.json composer.json composer.lock package.json package-lock.json phpcs.xml phpunit.xml.dist README.md webpack.config.js"
+    "bundle": "dir-archiver --src . --dest ../easy-google-fonts-trunk.zip --exclude node_modules phpunit test vendor .DS_Store .editorconfig .git .gitignore .prettierrc .travis.yml .wp-env.json composer.json composer.lock package.json package-lock.json phpcs.xml phpunit.xml.dist README.md webpack.config.js"
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,7 @@ export const enqueueStylesheet = props => {
   wp.customize.preview.bind(setting, ({ fontName, fontWeightStyle }) => {
     const isDefaultFont = typeof egfCustomizePreview.default_fonts[sanitizeKey(fontName)] !== 'undefined';
 
-    if (!fontName || isDefaultFont ) {
+    if (!fontName || isDefaultFont) {
       return;
     }
 
@@ -26,7 +26,7 @@ export const enqueueStylesheet = props => {
       variants = `:ital,wght@1,${fontWeight}`;
     }
 
-    if ( ! isItalic && ! isRegular ) {
+    if (!isItalic && !isRegular) {
       variants = `:wght@${fontWeight}`;
     }
 
@@ -40,4 +40,4 @@ export const enqueueStylesheet = props => {
   });
 };
 
-const sanitizeKey = name => name.toLowerCase().replaceAll(' ', '_');
+const sanitizeKey = (name = '') => name.toLowerCase().replaceAll(' ', '_');
