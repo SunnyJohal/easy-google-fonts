@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Easy Google Fonts
  * Description: A simple and easy way to add google fonts to your WordPress theme.
- * Version: 2.0.4
+ * Version: 2.0.5
  * Author: Titanium Themes
  * Author URI: https://titaniumthemes.com
  * Plugin URI: https://wordpress.org/plugins/easy-google-fonts/
@@ -14,7 +14,7 @@
  * @author      Sunny Johal - Titanium Themes <support@titaniumthemes.com>
  * @license     GPL-2.0+
  * @copyright   Copyright (c) 2021, Titanium Themes
- * @version     2.0.4
+ * @version     2.0.5
  */
 
 namespace EGF;
@@ -97,7 +97,7 @@ function load_file( $file_name ) {
 register_activation_hook(
 	__FILE__,
 	function() {
-		update_option( 'egf_version', '2.0.3' );
+		update_option( 'egf_version', '2.0.5' );
 		update_option( 'egf_force_user_redirect', get_current_user_id() );
 		update_option( 'egf_show_admin_pointer', true );
 		flush_rewrite_rules();
