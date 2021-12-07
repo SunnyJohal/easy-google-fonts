@@ -31,6 +31,24 @@ add_action( 'admin_head', __NAMESPACE__ . '\\output_preconnect_tag', 10 );
  * Enqueue Stylesheets
  */
 function enqueue_stylesheets() {
+	$request_url = get_stylesheet_url();
+
+	if ( empty( $request_url ) ) {
+		return;
+	}
+
+	echo "<link href='{$request_url}' rel='stylesheet'>"; // @codingStandardsIgnoreLine
+}
+add_action( 'wp_head', __NAMESPACE__ . '\\enqueue_stylesheets' );
+add_action( 'admin_head', __NAMESPACE__ . '\\enqueue_stylesheets' );
+
+
+/**
+ * Get Stylesheet URL
+ *
+ * @return string $request_url Google fonts CSS Url.
+ */
+function get_stylesheet_url() {
 	$font_families = [];
 
 	foreach ( Settings\get_saved_settings() as $setting ) {
@@ -138,14 +156,8 @@ function enqueue_stylesheets() {
 		}
 	}
 
-	if ( $request_url === $base_url ) {
-		return;
-	}
-
-	echo "<link href='{$request_url}' rel='stylesheet'>"; // @codingStandardsIgnoreLine
+	return $request_url === $base_url ? '' : $request_url;
 }
-add_action( 'wp_head', __NAMESPACE__ . '\\enqueue_stylesheets' );
-add_action( 'admin_head', __NAMESPACE__ . '\\enqueue_stylesheets' );
 
 /**
  * Output Inline Styles In <head>
@@ -338,5 +350,3 @@ function prop_has_units( $prop ) {
 		true
 	);
 }
-
-

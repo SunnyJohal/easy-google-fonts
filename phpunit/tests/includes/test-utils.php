@@ -48,6 +48,35 @@ class EGF_Test_Utils extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test Get Styles Handle
+	 *
+	 * @return void
+	 */
+	public function test_get_styles_handle() {
+		$style_handle = Utils\get_inline_font_styles_handle();
+
+		$this->assertNotEmpty( $style_handle );
+		$this->assertEquals( $style_handle, 'https://easy-google-fonts-styles' );
+	}
+
+	/**
+	 * Test Mock HTTP Request
+	 */
+	public function test_mock_http_response() {
+		$test_body = 'p { color: #f06; }';
+		$response  = Utils\mock_http_response( $test_body );
+
+		$this->assertIsArray( $response );
+		$this->assertArrayHasKey( 'body', $response );
+		$this->assertArrayHasKey( 'headers', $response );
+		$this->assertArrayHasKey( 'response', $response );
+		$this->assertArrayHasKey( 'cookies', $response );
+		$this->assertArrayHasKey( 'filename', $response );
+
+		$this->assertEquals( $response['body'], $test_body );
+	}
+
+	/**
 	 * Test Get Default Fonts
 	 */
 	public function test_get_default_fonts() {

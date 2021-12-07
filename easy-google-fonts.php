@@ -26,8 +26,6 @@ if ( ! defined( 'WPINC' ) ) {
 
 load_all_plugin_files();
 
-
-
 /**
  * Load All Plugin Files
  *
